@@ -27,7 +27,7 @@ class HomePresenter @Inject constructor(
 
     fun pressLogout() {
         authInteractor.logout()
-        router.newRootScreen(Screens.AuthFlow)
+        router.newRootFlow(Screens.AuthFlow)
     }
 
 }

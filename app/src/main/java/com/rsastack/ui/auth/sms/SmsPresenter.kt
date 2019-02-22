@@ -42,11 +42,12 @@ class SmsPresenter @Inject constructor(
 
         viewState.showProgress(true)
 
+
         disposable = authInteractor.login(sms)
             .doFinally { viewState.showProgress(false) }
             .subscribe(
                 {
-                    router.navigateTo(Screens.MainTabs)
+                    router.newRootFlow(Screens.MainTabs)
                 },
                 {
                     val msg = it.message ?: it.javaClass.simpleName
