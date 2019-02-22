@@ -1,7 +1,7 @@
 package com.rsastack.system.toothpick
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.rsastack.system.utils.verbose
 import toothpick.Toothpick
 import kotlin.reflect.KProperty
@@ -36,7 +36,7 @@ import kotlin.reflect.KProperty
  */
 class ScopeInitDelegate(
     private val initScopeName: String,
-    private val fragment:Fragment,
+    private val fragment: Fragment,
     private val initScope: ((String) -> Unit)? = null
 ){
     operator fun getValue(thisRef: Any?, property: KProperty<*>): String

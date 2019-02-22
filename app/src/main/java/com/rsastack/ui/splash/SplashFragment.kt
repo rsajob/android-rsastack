@@ -1,10 +1,10 @@
 package com.rsastack.ui.splash
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.view.View
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_splash.*
 import com.rsastack.system.navigation.BackButtonListener
 import com.rsastack.ui.common.BaseFragment

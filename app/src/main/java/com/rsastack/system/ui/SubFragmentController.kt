@@ -1,15 +1,15 @@
 package com.rsastack.system.ui
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 
 
 class SubFragmentController(
-        private val subContainerId: Int,
-        private val subTags: List<String>,
-        private val subFragmentsFactory: (String)-> Fragment,
-        private val firstSubIndex: Int = 0
+    private val subContainerId: Int,
+    private val subTags: List<String>,
+    private val subFragmentsFactory: (String)-> Fragment,
+    private val firstSubIndex: Int = 0
     )
 {
     lateinit var fm: FragmentManager

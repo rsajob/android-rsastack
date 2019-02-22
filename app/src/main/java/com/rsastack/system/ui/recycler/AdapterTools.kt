@@ -1,7 +1,7 @@
 package com.rsastack.system.ui.recycler
 
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 
 /**

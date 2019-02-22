@@ -40,11 +40,11 @@
                     android:textAlignment="center"
                     android:id="@+id/title_info"/>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                <AutoCompleteTextView
+                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                         android:id="@+id/phone_or_sms"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -53,13 +53,7 @@
                         android:maxLines="1"
                         android:singleLine="true"/>
 
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                     android:id="@+id/btn_next"

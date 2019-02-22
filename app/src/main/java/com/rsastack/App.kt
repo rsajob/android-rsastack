@@ -1,7 +1,7 @@
 package com.rsastack
 
 import android.app.Application
-import android.support.annotation.VisibleForTesting
+import androidx.annotation.VisibleForTesting
 import com.rsastack.toothpick.AppModule
 import com.rsastack.toothpick.DI
 import com.rsastack.toothpick.NetworkModule
