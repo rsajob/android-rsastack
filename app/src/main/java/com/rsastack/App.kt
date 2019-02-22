@@ -8,10 +8,6 @@ import com.rsastack.toothpick.NetworkModule
 import toothpick.Scope
 import toothpick.Toothpick
 import toothpick.configuration.Configuration
-import toothpick.registries.FactoryRegistry
-import toothpick.registries.FactoryRegistryLocator
-import toothpick.registries.MemberInjectorRegistry
-import toothpick.registries.MemberInjectorRegistryLocator
 
 class App: Application() {
 
@@ -38,9 +34,7 @@ class App: Application() {
         if (BuildConfig.DEBUG) {
             Toothpick.setConfiguration(Configuration.forDevelopment().preventMultipleRootScopes())
         } else {
-            Toothpick.setConfiguration(Configuration.forProduction().disableReflection())
-            FactoryRegistryLocator.setRootRegistry(FactoryRegistry())
-            MemberInjectorRegistryLocator.setRootRegistry(MemberInjectorRegistry())
+            Toothpick.setConfiguration(Configuration.forProduction().preventMultipleRootScopes())
         }
     }
 }
