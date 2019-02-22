@@ -13,7 +13,7 @@ class AuthInteractor @Inject constructor(
     {
         authData.phone = phone
         return Completable.complete()
-            .delaySubscription(2, TimeUnit.SECONDS)
+            .delaySubscription(1, TimeUnit.SECONDS)
             .observeOn(AndroidSchedulers.mainThread())
     }
 
@@ -23,7 +23,7 @@ class AuthInteractor @Inject constructor(
         authData.accessToken = "accessToken"
         authData.refreshToken = "refreshToken"
         return Completable.complete()
-            .delaySubscription(2, TimeUnit.SECONDS)
+            .delaySubscription(1, TimeUnit.SECONDS)
             .observeOn(AndroidSchedulers.mainThread())
     }
 
