@@ -23,9 +23,4 @@ class MainTabsPresenter @Inject constructor(
         router.exit()
     }
 
-    fun pressLogout()
-    {
-        router.newRootFlow(Screens.AuthFlow)
-    }
-
 }
