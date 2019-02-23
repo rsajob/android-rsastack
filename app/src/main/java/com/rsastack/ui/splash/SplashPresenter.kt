@@ -33,7 +33,7 @@ class SplashPresenter @Inject constructor(
     private fun start() {
         GlobalScope.launch(Dispatchers.Main) {
             viewState.showProgress()
-            delay(2000)
+            delay(1000)
             toNextScreen()
         }
     }
