@@ -50,8 +50,8 @@ dependencies {
 //    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
 
     // Moxy - lib for MVP architect (Used the custom moxy build with fixed bug with custom view)
-    implementation fileTree(include: ['moxy*.jar'], excludes: ['moxy-compiler.jar'], dir: 'libs')
-    kapt files('libs/moxy-compiler.jar')
+    implementation fileTree(include: ['moxy*.jar'], excludes: ['moxy-compiler*.jar'], dir: 'libs')
+    kapt files('libs/moxy-compiler-1.5.6.jar')
 
     // Cicerone (Navigation pattern)
     implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
