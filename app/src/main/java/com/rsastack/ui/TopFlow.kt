@@ -1,14 +1,14 @@
 package com.rsastack.ui
 
 import android.os.Bundle
+import com.arellomobile.mvp.MvpPresenter
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.rsastack.system.navigation.setLaunchScreen
 import com.rsastack.system.singleactivity.FlowFragment
 import com.rsastack.system.toothpick.FlowNavigationModule
-import com.rsastack.system.toothpick.ScopedMvpPresenter
-import com.rsastack.system.toothpick.initDynamicScope
+import com.rsastack.system.toothpick.initDynamicUiScope
 import ru.terrakok.cicerone.Router
 import toothpick.Toothpick
 import javax.inject.Inject
@@ -17,7 +17,7 @@ import com.rsastack.toothpick.DI
 
 class TopFlowFragment: FlowFragment(), MvpView {
 
-    private val scopeName:String by initDynamicScope { realScopeName ->
+    private val scopeName:String by initDynamicUiScope { realScopeName ->
         DI.TOP_FLOW_SCOPE = realScopeName // Save the dynamic scope name
         val scope = Toothpick.openScopes(DI.SERVER_SCOPE, DI.TOP_FLOW_SCOPE)
         scope.installModules(
@@ -50,7 +50,7 @@ class TopFlowFragment: FlowFragment(), MvpView {
 
 class TopFlowPresenter @Inject constructor(
         private val router: Router
-): ScopedMvpPresenter<MvpView>()
+): MvpPresenter<MvpView>()
 {
     fun onExit() {
         router.exit()

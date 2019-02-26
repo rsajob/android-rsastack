@@ -22,15 +22,18 @@ android {
     }
 
     buildTypes {
+
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
-
-ext.retrofit = "2.5.0"
-ext.anko_version='0.10.8'
 
 dependencies {
 
@@ -65,8 +68,9 @@ dependencies {
 
     implementation "com.google.code.gson:gson:2.8.5"
 
-    implementation "com.squareup.retrofit2:retrofit:$retrofit"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.retrofit2:retrofit:2.5.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.5.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
 
     implementation "com.squareup.okhttp3:okhttp:3.13.1"
     implementation "com.squareup.okhttp3:logging-interceptor:3.12.1"

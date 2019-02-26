@@ -3,12 +3,15 @@ package com.rsastack.system.toothpick
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import com.rsastack.system.utils.verbose
+import com.rsastack.system.moxy.MvpAppCompatDialogFragment
+import com.rsastack.system.moxy.MvpAppCompatFragment
+import com.rsastack.system.moxy.MvpDelegateObservable
 import toothpick.Toothpick
 import kotlin.reflect.KProperty
 
+
 /**
- * Класс-делегат предназначен для гарантии однократной инициализации скоупа Toothpick
+ * Класс-делегат предназначен для однократной инициализации UI скоупов Toothpick
  * при создании и восстановлени фрагментов.
  *
  * Проблема в следующем.
@@ -33,13 +36,32 @@ import kotlin.reflect.KProperty
  * Сохранение имени скоупа в аргументы фрагмента ещё нужно для динамических скоупов, когда мы генерируем имя скойпа при
  * открытии фрагмента первый раз.
  *
+ * Класс жёстко связан с Moxy и Mvp фрагментами. UiScopeDelegate следит за жизненным циклом Mvp-делагата
+ * и при onDestroy() закрывает UI-скоуп
+ *
  * @author Roman Savelev (aka fantom and rsajob). Date: 23.10.18
  */
-class ScopeInitDelegate(
+
+private const val LOG_TAG = "Toothpick"
+private const val ARG_SCOPE_NAME = "arg_scope_name"
+
+class UiScopeDelegate<MvpFragment: Fragment>(
     private val initScopeName: String,
-    private val fragment: Fragment,
+    private val fragment: MvpFragment,
+    mvpDelegate: MvpDelegateObservable<in MvpFragment>,
     private val initScope: ((String) -> Unit)? = null
-){
+)
+{
+    lateinit var realScopeName:String
+
+    init {
+        mvpDelegate.lifecycleObserver = object : MvpDelegateObservable.LifecycleObserver {
+            override fun onDestroy() {
+                closeScope()
+            }
+        }
+    }
+
     operator fun getValue(thisRef: Any?, property: KProperty<*>): String
     {
         var realScopeName = fragment.arguments?.getString(ARG_SCOPE_NAME)
@@ -54,23 +76,35 @@ class ScopeInitDelegate(
             initScope?.invoke(realScopeName)
         }
 
-       return realScopeName
+        this.realScopeName = realScopeName
+        return realScopeName
     }
 
-    companion object {
-        const val LOG_TAG = "Toothpick"
-        const val ARG_SCOPE_NAME = "arg_scope_name"
+
+    fun closeScope()
+    {
+        Log.i("Toothpick", "Close scope $realScopeName")
+        Toothpick.closeScope(realScopeName)
     }
 
 }
 
 fun uniqueScopeName(baseScopeName:String):String = "${baseScopeName}_${System.currentTimeMillis()}"
 
-fun Fragment.initScope(scopeName:String, initScope: ((String) -> Unit)?) =
-    ScopeInitDelegate(scopeName, this, initScope)
+fun MvpAppCompatFragment.initUiScope(scopeName:String, initScope: ((String) -> Unit)?) =
+    UiScopeDelegate(scopeName, this, this.mvpDelegate, initScope)
 
-fun Fragment.initDynamicScope(baseScopeName:String, initScope: ((String) -> Unit)?) =
-    ScopeInitDelegate(uniqueScopeName(baseScopeName), this, initScope)
+fun MvpAppCompatFragment.initDynamicUiScope(baseScopeName:String, initScope: ((String) -> Unit)?) =
+    UiScopeDelegate(uniqueScopeName(baseScopeName), this, this.mvpDelegate, initScope)
 
-fun Fragment.initDynamicScope(initScope: ((String) -> Unit)?) =
-    ScopeInitDelegate(uniqueScopeName(this::class.java.simpleName),this,initScope)
+fun MvpAppCompatFragment.initDynamicUiScope(initScope: ((String) -> Unit)?) =
+    UiScopeDelegate(uniqueScopeName(this::class.java.simpleName),this, this.mvpDelegate, initScope)
+
+fun MvpAppCompatDialogFragment.initUiScope(scopeName:String, initScope: ((String) -> Unit)?) =
+    UiScopeDelegate(scopeName, this, this.mvpDelegate, initScope)
+
+fun MvpAppCompatDialogFragment.initDynamicUiScope(baseScopeName:String, initScope: ((String) -> Unit)?) =
+    UiScopeDelegate(uniqueScopeName(baseScopeName), this, this.mvpDelegate, initScope)
+
+fun MvpAppCompatDialogFragment.initDynamicUiScope(initScope: ((String) -> Unit)?) =
+    UiScopeDelegate(uniqueScopeName(this::class.java.simpleName),this, this.mvpDelegate, initScope)

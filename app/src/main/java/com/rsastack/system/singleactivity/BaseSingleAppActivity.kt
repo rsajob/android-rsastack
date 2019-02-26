@@ -2,7 +2,6 @@ package com.rsastack.system.singleactivity
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.MvpView
 import com.rsastack.system.navigation.BackButtonListener
 import ru.terrakok.cicerone.Navigator
@@ -10,6 +9,7 @@ import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import ru.terrakok.cicerone.commands.Command
 import com.rsastack.R
+import com.rsastack.system.moxy.MvpAppCompatActivity
 import javax.inject.Inject
 
 /**

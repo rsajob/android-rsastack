@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.arellomobile.mvp.MvpAppCompatFragment
 import com.rsastack.system.navigation.BackButtonListener
+import com.rsastack.system.moxy.MvpAppCompatFragment
 
 abstract class BaseFragment : MvpAppCompatFragment(), BackButtonListener {
 

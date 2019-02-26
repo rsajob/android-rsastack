@@ -6,13 +6,13 @@ import androidx.fragment.app.FragmentTransaction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.arellomobile.mvp.MvpAppCompatFragment
 import com.rsastack.system.navigation.BackButtonListener
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import ru.terrakok.cicerone.commands.Command
 import com.rsastack.R
+import com.rsastack.system.moxy.MvpAppCompatFragment
 import javax.inject.Inject
 
 abstract class FlowFragment : MvpAppCompatFragment(), BackButtonListener {
