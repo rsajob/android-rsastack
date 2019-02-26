@@ -1,6 +1,7 @@
 package com.rsastack.system.toothpick
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.rsastack.system.utils.verbose
 import toothpick.Toothpick
@@ -49,7 +50,7 @@ class ScopeInitDelegate(
         }
 
         if (!Toothpick.isScopeOpen(realScopeName)) {
-            verbose("int scope: $realScopeName")
+            Log.v(LOG_TAG, "Init new UI scope: $realScopeName")
             initScope?.invoke(realScopeName)
         }
 
@@ -57,6 +58,7 @@ class ScopeInitDelegate(
     }
 
     companion object {
+        const val LOG_TAG = "Toothpick"
         const val ARG_SCOPE_NAME = "arg_scope_name"
     }
 
@@ -68,15 +70,7 @@ fun Fragment.initScope(scopeName:String, initScope: ((String) -> Unit)?) =
     ScopeInitDelegate(scopeName, this, initScope)
 
 fun Fragment.initDynamicScope(baseScopeName:String, initScope: ((String) -> Unit)?) =
-    ScopeInitDelegate(
-        uniqueScopeName(
-            baseScopeName
-        ), this, initScope
-    )
+    ScopeInitDelegate(uniqueScopeName(baseScopeName), this, initScope)
 
 fun Fragment.initDynamicScope(initScope: ((String) -> Unit)?) =
-    ScopeInitDelegate(
-        uniqueScopeName(this::class.java.simpleName),
-        this,
-        initScope
-    )
+    ScopeInitDelegate(uniqueScopeName(this::class.java.simpleName),this,initScope)
