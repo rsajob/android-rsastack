@@ -1,7 +1,7 @@
 # Skeleton for android Single-Activity application
  
  Stack:
-  * Kolin
+  * Kotlin
   * Clean Architecture (Not really) 
   * Moxy 
   * Cicerone 
