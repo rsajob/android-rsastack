@@ -19,6 +19,8 @@ import com.rsastack.utils.setupKeyboardModePan
 
 import toothpick.Toothpick
 
+private const val CURRENT_TAB = "current_tab"
+
 class MainTabsFragment : BaseFragment(), MainTabsView {
 
     override val layoutRes = R.layout.fragment_main
@@ -38,8 +40,19 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
         return inflater.inflate(layoutRes, container, false)
     }
 
+    private var currentTab:String? = null
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        currentTab?.let { outState.putString(CURRENT_TAB, it) }
+        super.onSaveInstanceState(outState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (savedInstanceState != null)
+            currentTab = savedInstanceState.getString(CURRENT_TAB, null)
+
         initBottomNavigation()
     }
 
@@ -54,11 +67,33 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
         }
 
         // Default Tab
-        selectTab(Screens.TabCall)
-        bottom_navigation.selectedItemId = R.id.navigation_home
+        if (currentTab == null)
+            currentTab = Screens.TabCall.screenKey
+
+        currentTab?.let { selectTabByName(it) }
     }
 
+    private fun selectTabByName(screenKey: String) {
+        val screen = when(screenKey)
+        {
+            Screens.TabCall.screenKey -> Screens.TabCall
+            Screens.TabContacts.screenKey -> Screens.TabContacts
+            else -> Screens.TabCall
+        }
+        selectTab(screen)
+
+        val itemId = when(screenKey)
+        {
+            Screens.TabCall.screenKey -> R.id.navigation_home
+            Screens.TabContacts.screenKey -> R.id.navigation_cards
+            else -> R.id.navigation_home
+        }
+        bottom_navigation.selectedItemId = itemId
+    }
+
+
     private fun selectTab(tab: SupportAppScreen) {
+        currentTab = tab.screenKey
         val currentFragment = currentTabFragment
         val newFragment = childFragmentManager.findFragmentByTag(tab.screenKey)
 
