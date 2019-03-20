@@ -35,7 +35,7 @@ object Screens {
         override fun getFragment() = SmsFragment()
     }
 
-    object TabCall : SupportAppScreen() {
+    object TabHome : SupportAppScreen() {
         override fun getFragment() = HomeFragment()
     }
 

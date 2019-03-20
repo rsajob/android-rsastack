@@ -60,14 +60,14 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId)
             {
-                R.id.navigation_home -> selectTab(Screens.TabCall)
+                R.id.navigation_home -> selectTab(Screens.TabHome)
                 R.id.navigation_cards -> selectTab(Screens.TabContacts)
             }
             true
         }
 
         // init containers
-        val tabs = listOf(Screens.TabCall, Screens.TabContacts)
+        val tabs = listOf(Screens.TabHome, Screens.TabContacts)
         val fm = childFragmentManager
         tabs.forEach { tab ->
             val fragment = createTabFragment(tab)
@@ -79,7 +79,7 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
 
         // Default Tab
         if (currentTab == null)
-            currentTab = Screens.TabCall.screenKey
+            currentTab = Screens.TabHome.screenKey
 
         currentTab?.let { selectTabByName(it) }
     }
@@ -87,15 +87,15 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
     private fun selectTabByName(screenKey: String) {
         val screen = when(screenKey)
         {
-            Screens.TabCall.screenKey -> Screens.TabCall
+            Screens.TabHome.screenKey -> Screens.TabHome
             Screens.TabContacts.screenKey -> Screens.TabContacts
-            else -> Screens.TabCall
+            else -> Screens.TabHome
         }
         selectTab(screen)
 
         val itemId = when(screenKey)
         {
-            Screens.TabCall.screenKey -> R.id.navigation_home
+            Screens.TabHome.screenKey -> R.id.navigation_home
             Screens.TabContacts.screenKey -> R.id.navigation_cards
             else -> R.id.navigation_home
         }
