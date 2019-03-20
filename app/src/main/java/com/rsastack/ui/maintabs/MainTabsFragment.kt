@@ -42,6 +42,12 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
 
     private var currentTab:String? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null)
+            initContainers()
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         currentTab?.let { outState.putString(CURRENT_TAB, it) }
         super.onSaveInstanceState(outState)
@@ -56,17 +62,8 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
         initBottomNavigation()
     }
 
-    private fun initBottomNavigation() {
-        bottom_navigation.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId)
-            {
-                R.id.navigation_home -> selectTab(Screens.TabHome)
-                R.id.navigation_cards -> selectTab(Screens.TabContacts)
-            }
-            true
-        }
-
-        // init containers
+    private fun initContainers()
+    {
         val tabs = listOf(Screens.TabHome, Screens.TabContacts)
         val fm = childFragmentManager
         tabs.forEach { tab ->
@@ -75,6 +72,18 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
                 .add(R.id.tab_container, fragment, tab.screenKey)
                 .detach(fragment)
                 .commitNow()
+        }
+    }
+
+
+    private fun initBottomNavigation() {
+        bottom_navigation.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId)
+            {
+                R.id.navigation_home -> selectTab(Screens.TabHome)
+                R.id.navigation_cards -> selectTab(Screens.TabContacts)
+            }
+            true
         }
 
         // Default Tab
