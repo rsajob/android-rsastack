@@ -66,6 +66,17 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
             true
         }
 
+        // init containers
+        val tabs = listOf(Screens.TabCall, Screens.TabContacts)
+        val fm = childFragmentManager
+        tabs.forEach { tab ->
+            val fragment = createTabFragment(tab)
+            fm.beginTransaction()
+                .add(R.id.tab_container, fragment, tab.screenKey)
+                .detach(fragment)
+                .commitNow()
+        }
+
         // Default Tab
         if (currentTab == null)
             currentTab = Screens.TabCall.screenKey
@@ -100,15 +111,19 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
         if (currentFragment != null && newFragment != null && currentFragment == newFragment) return
 
         childFragmentManager.beginTransaction().apply {
-            if (newFragment == null) add(R.id.tab_container, createTabFragment(tab), tab.screenKey)
+            //            if (newFragment == null) {
+//                add(R.id.tab_container, createTabFragment(tab), tab.screenKey)
+//            }
 
             currentFragment?.let {
-                hide(it)
-                it.userVisibleHint = false
+                detach(it)
+//                hide(it)
+//                it.userVisibleHint = false
             }
             newFragment?.let {
-                show(it)
-                it.userVisibleHint = true
+                attach(it)
+//                show(it)
+//                it.userVisibleHint = true
             }
         }.commitNow()
     }
