@@ -1,5 +1,7 @@
 package com.rsastack.ui
 
+import androidx.annotation.IdRes
+import com.rsastack.R
 import com.rsastack.ui.splash.SplashFragment
 import com.rsastack.ui.maintabs.MainTabsFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
@@ -8,6 +10,8 @@ import com.rsastack.ui.auth.phone.PhoneFragment
 import com.rsastack.ui.auth.sms.SmsFragment
 import com.rsastack.ui.cards.CardsFragment
 import com.rsastack.ui.home.HomeFragment
+
+open class SupportAppTabScreen(@IdRes val navigationIdRes: Int) : SupportAppScreen()
 
 object Screens {
 
@@ -35,12 +39,11 @@ object Screens {
         override fun getFragment() = SmsFragment()
     }
 
-    object TabHome : SupportAppScreen() {
+    object TabHome : SupportAppTabScreen(R.id.navigation_home) {
         override fun getFragment() = HomeFragment()
     }
 
-    object TabContacts : SupportAppScreen() {
+    object TabContacts : SupportAppTabScreen(R.id.navigation_cards) {
         override fun getFragment() = CardsFragment()
     }
-
 }
