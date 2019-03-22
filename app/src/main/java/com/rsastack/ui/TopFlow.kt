@@ -15,13 +15,13 @@ import javax.inject.Inject
 
 import com.rsastack.toothpick.DI
 
-class TopFlowFragment: FlowFragment(), MvpView {
+class TopFlowFragment: com.rsastack.system.singleactivity.FlowFragment(), MvpView {
 
     private val scopeName:String by initDynamicUiScope { realScopeName ->
         DI.TOP_FLOW_SCOPE = realScopeName // Save the dynamic scope name
         val scope = Toothpick.openScopes(DI.SERVER_SCOPE, DI.TOP_FLOW_SCOPE)
         scope.installModules(
-            FlowNavigationModule(scope.getInstance(Router::class.java))
+            com.rsastack.system.toothpick.FlowNavigationModule(scope.getInstance(Router::class.java))
         )
     }
 

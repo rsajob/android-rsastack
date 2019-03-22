@@ -15,7 +15,8 @@ import com.rsastack.R
 import com.rsastack.system.moxy.MvpAppCompatFragment
 import javax.inject.Inject
 
-abstract class FlowFragment : MvpAppCompatFragment(), BackButtonListener {
+abstract class FlowFragment : MvpAppCompatFragment(),
+    BackButtonListener {
     open val layoutRes: Int = R.layout.layout_flow_container
     open val containerId: Int = R.id.flow_container
 

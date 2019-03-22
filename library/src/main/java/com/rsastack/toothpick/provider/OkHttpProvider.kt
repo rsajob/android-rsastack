@@ -1,19 +1,21 @@
-package com.rsastack.toothpick.providers
+package com.rsastack.toothpick.provider
 
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import com.rsastack.BuildConfig
 import com.rsastack.network.interceptors.CurlLoggingInterceptor
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Provider
 
-class OkHttpProvider @Inject constructor() : Provider<OkHttpClient> {
+
+class OkHttpProvider @Inject constructor(private val timeout: Timeout) : Provider<OkHttpClient> {
+
     override fun get(): OkHttpClient {
         val httpClientBuilder = OkHttpClient.Builder()
 
-        httpClientBuilder.readTimeout(20, TimeUnit.SECONDS)
-        httpClientBuilder.connectTimeout(20, TimeUnit.SECONDS)
+        httpClientBuilder.readTimeout(timeout.value, TimeUnit.SECONDS)
+        httpClientBuilder.connectTimeout(timeout.value, TimeUnit.SECONDS)
         if (BuildConfig.DEBUG) {
             val httpLoggingInterceptor = HttpLoggingInterceptor()
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY

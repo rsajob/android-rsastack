@@ -33,8 +33,8 @@ class AuthDataPrefs @Inject constructor(context: Context) : AuthDataImpl()
         private const val PREFS_NAME = "auth"
     }
 
-    override var phone:String? by PrefDelegate(context, null, PREFS_NAME)
-    override var clientId:String? by PrefDelegate(context, null, PREFS_NAME)
-    override var accessToken:String? by PrefDelegate(context, null, PREFS_NAME)
-    override var refreshToken:String? by PrefDelegate(context, null, PREFS_NAME)
+    override var phone:String? by com.rsastack.utils.PrefDelegate(context, null, PREFS_NAME)
+    override var clientId:String? by com.rsastack.utils.PrefDelegate(context, null, PREFS_NAME)
+    override var accessToken:String? by com.rsastack.utils.PrefDelegate(context, null, PREFS_NAME)
+    override var refreshToken:String? by com.rsastack.utils.PrefDelegate(context, null, PREFS_NAME)
 }

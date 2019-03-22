@@ -25,7 +25,7 @@ class App: Application() {
 
         val serverScope = Toothpick.openScopes(DI.APP_SCOPE, DI.SERVER_SCOPE)
         serverScope.installModules(
-            NetworkModule()
+            com.rsastack.toothpick.NetworkModule()
         )
 
     }

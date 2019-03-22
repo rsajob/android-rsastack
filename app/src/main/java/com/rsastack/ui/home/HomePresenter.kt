@@ -17,7 +17,7 @@ interface HomeView : MvpView {
 
 @InjectViewState
 class HomePresenter @Inject constructor(
-    private val router: FlowRouter,
+    private val router: com.rsastack.system.navigation.FlowRouter,
     private val authInteractor: AuthInteractor
 ) : MvpPresenter<HomeView>() {
 

@@ -22,7 +22,7 @@ interface SplashView : MvpView {
 
 @InjectViewState
 class SplashPresenter @Inject constructor(
-    val router: FlowRouter,
+    val router: com.rsastack.system.navigation.FlowRouter,
     private val authInteractor: AuthInteractor
 ) : MvpPresenter<SplashView>() {
 

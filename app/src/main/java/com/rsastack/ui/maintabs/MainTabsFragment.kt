@@ -140,7 +140,7 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
     private fun createTabFragment(tab: SupportAppScreen) = tab.fragment
 
     override fun onBackPressed() {
-        (currentTabFragment as? BackButtonListener)?.onBackPressed()
+        (currentTabFragment as? com.rsastack.system.navigation.BackButtonListener)?.onBackPressed()
     }
 
 

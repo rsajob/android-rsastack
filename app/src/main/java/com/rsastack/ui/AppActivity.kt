@@ -11,7 +11,7 @@ import ru.terrakok.cicerone.Router
 import toothpick.Toothpick
 import javax.inject.Inject
 
-class AppActivity: BaseSingleAppActivity(), MvpView
+class AppActivity: com.rsastack.system.singleactivity.BaseSingleAppActivity(), MvpView
 {
     @InjectPresenter
     lateinit var presenter: AppPresenter

@@ -95,16 +95,36 @@ fun MvpAppCompatFragment.initUiScope(scopeName:String, initScope: ((String) -> U
     UiScopeDelegate(scopeName, this, this.mvpDelegate, initScope)
 
 fun MvpAppCompatFragment.initDynamicUiScope(baseScopeName:String, initScope: ((String) -> Unit)?) =
-    UiScopeDelegate(uniqueScopeName(baseScopeName), this, this.mvpDelegate, initScope)
+    UiScopeDelegate(
+        uniqueScopeName(baseScopeName),
+        this,
+        this.mvpDelegate,
+        initScope
+    )
 
 fun MvpAppCompatFragment.initDynamicUiScope(initScope: ((String) -> Unit)?) =
-    UiScopeDelegate(uniqueScopeName(this::class.java.simpleName),this, this.mvpDelegate, initScope)
+    UiScopeDelegate(
+        uniqueScopeName(this::class.java.simpleName),
+        this,
+        this.mvpDelegate,
+        initScope
+    )
 
 fun MvpAppCompatDialogFragment.initUiScope(scopeName:String, initScope: ((String) -> Unit)?) =
     UiScopeDelegate(scopeName, this, this.mvpDelegate, initScope)
 
 fun MvpAppCompatDialogFragment.initDynamicUiScope(baseScopeName:String, initScope: ((String) -> Unit)?) =
-    UiScopeDelegate(uniqueScopeName(baseScopeName), this, this.mvpDelegate, initScope)
+    UiScopeDelegate(
+        uniqueScopeName(baseScopeName),
+        this,
+        this.mvpDelegate,
+        initScope
+    )
 
 fun MvpAppCompatDialogFragment.initDynamicUiScope(initScope: ((String) -> Unit)?) =
-    UiScopeDelegate(uniqueScopeName(this::class.java.simpleName),this, this.mvpDelegate, initScope)
+    UiScopeDelegate(
+        uniqueScopeName(this::class.java.simpleName),
+        this,
+        this.mvpDelegate,
+        initScope
+    )

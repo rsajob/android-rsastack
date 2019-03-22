@@ -14,7 +14,7 @@ import com.rsastack.utils.visible
 import toothpick.Toothpick
 
 class SplashFragment : BaseFragment() , SplashView,
-    BackButtonListener
+    com.rsastack.system.navigation.BackButtonListener
 {
     override val layoutRes = R.layout.fragment_splash
     private var errorSnackbar: Snackbar? = null

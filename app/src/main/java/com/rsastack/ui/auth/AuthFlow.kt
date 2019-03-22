@@ -8,10 +8,8 @@ import com.arellomobile.mvp.MvpPresenter
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import com.rsastack.system.navigation.FlowRouter
 import com.rsastack.system.navigation.setLaunchScreen
 import com.rsastack.system.singleactivity.FlowFragment
-import com.rsastack.system.toothpick.FlowNavigationModule
 import com.rsastack.system.toothpick.initDynamicUiScope
 import com.rsastack.toothpick.DI
 import com.rsastack.ui.Screens
@@ -25,7 +23,7 @@ class AuthFlowFragment: FlowFragment(), MvpView {
         DI.AUTH_FLOW_SCOPE = realScopeName // Save the dynamic scope name
         val scope = Toothpick.openScopes(DI.TOP_FLOW_SCOPE, DI.AUTH_FLOW_SCOPE)
         scope.installModules(
-            FlowNavigationModule(scope.getInstance(FlowRouter::class.java))
+            com.rsastack.system.toothpick.FlowNavigationModule(scope.getInstance(com.rsastack.system.navigation.FlowRouter::class.java))
         )
     }
 
@@ -56,7 +54,7 @@ class AuthFlowFragment: FlowFragment(), MvpView {
 
 
 class AuthFlowPresenter @Inject constructor(
-        private val router: FlowRouter
+        private val router: com.rsastack.system.navigation.FlowRouter
 ): MvpPresenter<MvpView>()
 {
     fun onExit() {
