@@ -1,4 +1,4 @@
-package com.rsastack.utils
+package com.rsastack.system.utils
 
 import android.app.Activity
 import android.content.Context

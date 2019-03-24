@@ -12,8 +12,8 @@ import kotlinx.android.synthetic.main.fragment_auth_phone.*
 import com.rsastack.ui.common.BaseFragment
 import com.rsastack.R
 import com.rsastack.toothpick.DI
-import com.rsastack.utils.hideKeyboard
-import com.rsastack.utils.visible
+import com.rsastack.system.utils.hideKeyboard
+import com.rsastack.system.utils.visible
 
 import toothpick.Toothpick
 

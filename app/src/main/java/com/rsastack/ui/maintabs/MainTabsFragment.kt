@@ -12,7 +12,7 @@ import com.rsastack.toothpick.DI
 import com.rsastack.ui.Screens
 import com.rsastack.ui.SupportAppTabScreen
 import com.rsastack.ui.common.BaseFragment
-import com.rsastack.utils.setupKeyboardModePan
+import com.rsastack.system.utils.setupKeyboardModePan
 import kotlinx.android.synthetic.main.fragment_main.*
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 import toothpick.Toothpick

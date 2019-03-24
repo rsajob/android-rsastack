@@ -6,11 +6,10 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_splash.*
-import com.rsastack.system.navigation.BackButtonListener
 import com.rsastack.ui.common.BaseFragment
 import com.rsastack.R
 import com.rsastack.toothpick.DI
-import com.rsastack.utils.visible
+import com.rsastack.system.utils.visible
 import toothpick.Toothpick
 
 class SplashFragment : BaseFragment() , SplashView,

@@ -13,7 +13,7 @@ import com.rsastack.system.singleactivity.FlowFragment
 import com.rsastack.system.toothpick.initDynamicUiScope
 import com.rsastack.toothpick.DI
 import com.rsastack.ui.Screens
-import com.rsastack.utils.setupKeyboardModeResize
+import com.rsastack.system.utils.setupKeyboardModeResize
 import toothpick.Toothpick
 import javax.inject.Inject
 
