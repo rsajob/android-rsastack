@@ -6,10 +6,10 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:gravity="center_horizontal"
               android:orientation="vertical"
-              android:paddingBottom="@dimen/activity_vertical_margin"
-              android:paddingLeft="@dimen/activity_horizontal_margin"
-              android:paddingRight="@dimen/activity_horizontal_margin"
-              android:paddingTop="@dimen/activity_vertical_margin"
+              android:paddingBottom="@dimen/base_vertical_margin"
+              android:paddingLeft="@dimen/base_horizontal_margin"
+              android:paddingRight="@dimen/base_horizontal_margin"
+              android:paddingTop="@dimen/base_vertical_margin"
 >
 
     <!-- Login progress -->
@@ -58,22 +58,19 @@
 
             <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_next"
-                    style="@style/Widget.MaterialComponents.Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/action_next"
-                    app:cornerRadius="40dp"
             />
 
             <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_cancel"
-                    style="@style/Widget.MaterialComponents.Button"
+                    style="?componentButtonTextDefault"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Cancel"
-                    app:cornerRadius="40dp"
             />
 
         </LinearLayout>

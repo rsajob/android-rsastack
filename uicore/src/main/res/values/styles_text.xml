@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+    </style>
+
+    <style name="TextAppearance.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+    </style>
+
+    <style name="TextAppearance.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+    </style>
+
+    <style name="TextAppearance.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+    </style>
+
+    <!-- Используется по умолчанию в: -->
+    <!-- Toolbar: titleTextAppearance -->
+    <style name="TextAppearance.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+    </style>
+
+    <!-- Используется по умолчанию в: -->
+    <!-- Toolbar: subtitleTextAppearance -->
+    <style name="TextAppearance.Subtitle0" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+    </style>
+
+    <style name="TextAppearance.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+    </style>
+
+    <style name="TextAppearance.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.007</item>
+    </style>
+
+    <!-- Widget.MaterialComponents.CheckedTextView android:textAppearance -->
+    <!-- mtrl_date_picker_calendar_days.xml -->
+    <style name="TextAppearance.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:letterSpacing">0.009</item>
+    </style>
+
+    <!-- Base.Widget.MaterialComponents.Chip -->
+    <!-- MaterialAlertDialog.MaterialComponents.Body.Text -->
+    <style name="TextAppearance.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:letterSpacing">0.007</item>
+    </style>
+
+    <style name="TextAppearance.Body3" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">13sp</item>
+        <item name="android:letterSpacing">0.007</item>
+    </style>
+
+    <style name="TextAppearance.Body4" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+
+    <!-- Base.Widget.MaterialComponents.TextInputLayout -->
+    <!-- Widget.MaterialComponents.BottomNavigationView -->
+    <style name="TextAppearance.Caption" parent="TextAppearance.MaterialComponents.Caption">
+    </style>
+
+</resources>

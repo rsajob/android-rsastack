@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Обычные кнопки -->
+    <style name="Component.Button.Accent" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">?colorSecondary</item>
+        <item name="android:insetLeft">2dp</item>
+        <item name="android:insetRight">2dp</item>
+        <item name="cornerRadius">20dp</item>
+    </style>
+
+    <style name="Component.Button.Accent.Big" parent="Component.Button.Accent">
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+
+    <!-- Кнопки в виде текста-->
+    <style name="Component.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">?colorSecondary</item>
+    </style>
+
+    <style name="Component.Button.TextButton.Big" parent="Component.Button.TextButton">
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+
+    <!-- Общий стиль всех полей ввода в приложении -->
+    <!-- задаётся через атрибут textInputStyle в теме -->
+    <style name="Component.TextInputLayout" parent="Widget.Design.TextInputLayout">
+        <item name="hintTextColor">@color/black_tr_54</item>
+        <item name="android:textColorHint">@color/black_tr_54</item>
+    </style>
+
+    <style name="Component.AppBarLayout" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">?colorPrimary</item>
+    </style>
+
+    <style name="ThemeOverlay.Component.AppBarLayout" parent="@style/ThemeOverlay.AppCompat.Light">
+        <!-- Цвет иконок в toolbar -->
+        <!-- В вектороной иконке должен быть выставлен параметр android:tint="?attr/colorControlNormal"  -->
+        <item name="colorControlNormal">?colorOnPrimary</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+    </style>
+
+    <style name="Component.BottomNav" parent="Widget.MaterialComponents.BottomNavigationView">
+        <!--<item name="android:background">?colorPrimary</item>-->
+        <!--<item name="android:colorBackground">?colorPrimary</item>-->
+    </style>
+
+
+</resources>

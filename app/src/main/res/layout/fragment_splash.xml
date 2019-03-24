@@ -10,8 +10,8 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="Loading"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textAppearance="?textAppearanceHeadline5"
+    />
 
     <ProgressBar
             android:id="@+id/progress"

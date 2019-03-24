@@ -36,6 +36,10 @@ android {
 }
 
 dependencies {
+
+    implementation project(':library')
+    implementation project(':uicore')
+
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
@@ -51,7 +55,6 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.2.3'
     //    implementation 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
     //    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
-    implementation project(':library')
     // Moxy - lib for MVP architect (Used the custom moxy build with fixed bug with custom view)
     //implementation fileTree(include: ['moxy*.jar'], excludes: ['moxy-compiler*.jar'], dir: 'libs')
     compileOnly files('libs/moxy-1.5.6.jar')

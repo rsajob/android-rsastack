@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">@android:color/transparent</color>
+
+    <color name="black">#FF000000</color>
+    <color name="black1">#383838</color>
+    <color name="black_tr_85">#D9000000</color>
+    <color name="black_tr_54">#8A000000</color>
+    <color name="black_tr_38">#61000000</color>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="white_tr_70">#B3FFFFFF</color>
+    <color name="white_tr_38">#61FFFFFF</color>
+
+    <color name="gray_light">#E5E5E5</color>
+    <color name="gray_medium">#A7A7A7</color>
+    <color name="gray_dark">#737373</color>
+
+    <color name="red_light">#f18179</color>
+    <color name="red_medium">#F44336</color>
+    <color name="red_dark">#B71C1C</color>
+
+    <color name="teal">#00C6D1</color>
+    <color name="teal_tr_70">#B300C6D1</color>
+    <color name="teal_tr_38">#6100C6D1</color>
+
+    <color name="background">@color/gray_light</color>
+    <color name="surface">@color/white</color>
+
+    <color name="primary">#FF333333</color>
+    <color name="primary_light">#505050</color>
+
+    <color name="text_primary_enable">@color/black_tr_85</color>
+    <color name="text_primary_disable">@color/black_tr_54</color>
+    <color name="text_secondary_enable">@color/black_tr_54</color>
+    <color name="text_secondary_disable">@color/black_tr_38</color>
+    <color name="text_error_enable">@color/red_dark</color>
+    <color name="text_error_disable">@color/red_light</color>
+
+</resources>

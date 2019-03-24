@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+        <!-- Параметры Window Insets-->
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:textColorTertiary">@color/text_secondary</item>
+
+        <item name="bottomNavigationStyle">@style/Component.BottomNav</item>
+
+        <!-- New MaterialComponents attributes. -->
+        <item name="colorError">@color/text_error</item>
+
+        <item name="textAppearanceBody1">@style/TextAppearance.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.Body2</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.Subtitle2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.Caption</item>
+        <item name="textAppearanceHeadline1">@style/TextAppearance.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.Headline6</item>
+        <item name="textAppearanceButton">@style/TextAppearance.Button</item>
+
+        <item name="textAppearanceSubtitle0">@style/TextAppearance.Subtitle0</item>
+        <item name="textAppearanceBody3">@style/TextAppearance.Body3</item>
+        <item name="textAppearanceBody4">@style/TextAppearance.Body4</item>
+
+        <!-- Стиль всех полей ввода -->
+        <item name="textInputStyle">@style/Component.TextInputLayout</item>
+        <!-- Стиль для всех Toolbar -->
+        <!-- Primary - цвета берутся из colorPrimary и colorOnPrimary-->
+        <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.Primary</item>
+        <!-- Стиль для всех кнопок -->
+        <item name="materialButtonStyle">?componentButtonDefault</item>
+
+        <item name="componentButtonDefault">@style/Component.Button.Accent</item>
+        <item name="componentButtonTextDefault">@style/Component.Button.TextButton</item>
+
+        <!-- Настройка toolbar  -->
+        <item name="componentAppBarLayoutStyle">@style/Component.AppBarLayout</item>
+        <item name="componentAppBarLayoutTheme">@style/ThemeOverlay.Component.AppBarLayout</item>
+
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
+
+        <!-- Для поддержки варианта с непрозрачной StatusBar -->
+        <item name="colorPrimaryDark">?colorPrimaryVariant</item>
+
+    </style>
+
+    <style name="AppTheme" parent="Base.AppTheme">
+        <!-- Для переопределения для разных API -->
+    </style>
+
+    <style name="AppTheme.Theme1" parent="AppTheme" >
+        <!-- https://github.com/material-components/material-components-android/blob/master/docs/theming/Color.md -->
+        <item name="colorPrimary">#f8a707</item>
+        <item name="colorPrimaryVariant">#9B6505</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorAccent">?colorSecondary</item>
+
+        <item name="colorSecondary">#f8a707</item>
+        <item name="colorSecondaryVariant">#AF7601</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+    </style>
+
+    <style name="AppTheme.Theme2" parent="AppTheme" >
+        <!-- https://github.com/material-components/material-components-android/blob/master/docs/theming/Color.md -->
+        <item name="colorPrimary">#FF893458</item>
+        <item name="colorPrimaryVariant">#5F253E</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorAccent">?colorSecondary</item>
+
+        <item name="colorSecondary">#FF9646</item>
+        <item name="colorSecondaryVariant">#CA7739</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+
+    </style>
+
+
+
+</resources>

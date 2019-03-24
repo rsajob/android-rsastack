@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<attr name="searchBarTheme" format="reference"/>
+
+	<attr name="componentBottomNav" format="reference"/>
+
+	<attr name="textAppearanceBody3" format="reference"/>
+	<attr name="textAppearanceBody4" format="reference"/>
+	<attr name="textAppearanceSubtitle0" format="reference"/>
+
+	<attr name="componentAppBarLayoutStyle" format="reference"/>
+	<attr name="componentAppBarLayoutTheme" format="reference"/>
+
+	<attr name="componentButtonDefault" format="reference"/>
+	<attr name="componentButtonTextDefault" format="reference"/>
+
+</resources>
