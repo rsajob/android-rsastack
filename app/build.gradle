@@ -3,14 +3,25 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+// For change release apk-file name and version
+apply from: '../versioning.gradle'
+apply from: "../artifacts.gradle"
+
+def openProperties(fileName) {
+    Properties properties = new Properties()
+    if (project.rootProject.file(fileName).exists())
+        properties.load(project.rootProject.file(fileName).newDataInputStream())
+    return properties
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.rsastack"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode buildVersionCode()
+        versionName version
 
         compileOptions {
             sourceCompatibility 1.8
@@ -21,18 +32,59 @@ android {
         multiDexEnabled = true
     }
 
+    signingConfigs {
+
+        release {
+            storeFile file("../sign/release.jks")
+
+            Properties prop = openProperties("sign/release.properties")
+            storePassword prop.getProperty("keystorePassword")
+            keyAlias prop.getProperty("keyAlias")
+            keyPassword prop.getProperty("keyPassword")
+        }
+
+        debug {
+            storeFile file('../sign/debug.jks')
+
+            Properties prop = openProperties("sign/debug.properties")
+            storePassword prop.getProperty("keystorePassword")
+            keyAlias prop.getProperty("keyAlias")
+            keyPassword prop.getProperty("keyPassword")
+        }
+
+    }
+
+    flavorDimensions "default"
+
     buildTypes {
 
         debug {
             debuggable true
             minifyEnabled false
+            signingConfig signingConfigs.debug
+            applicationIdSuffix ".debug"
+        }
+
+        staging {
+            debuggable false
+            minifyEnabled true
+            signingConfig signingConfigs.debug
+            applicationIdSuffix ".staging"
+            useProguard true
+            // but in proguard-rules-dontobfuscate.pro add '-dontobfuscate'
+            // see https://stackoverflow.com/questions/47893266/build-failing-on-play-services11-8-x-with-pro-guard-parser-error
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules-dontobfuscate.pro'
         }
 
         release {
-            minifyEnabled false
+            debuggable false
+            minifyEnabled true
+            signingConfig signingConfigs.release
+            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -96,3 +148,5 @@ kotlin {
         experimental = true
     }
 }
+
+

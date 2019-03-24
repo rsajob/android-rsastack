@@ -16,7 +16,6 @@
 #   public *;
 #}
 
-
 # Uncomment this to preserve the line number information for
 # debugging stack traces.
 -keepattributes SourceFile,LineNumberTable
@@ -67,6 +66,7 @@
 # https://github.com/square/okio#proguard
 -dontwarn okio.**
 
+#
 ##############################################
 ## Gson
 ##############################################
@@ -97,12 +97,12 @@
 -keep class **$$ViewStateClassNameProvider
 -keepnames class * extends com.arellomobile.mvp.*
 
-#
+
 ##############################################
 ## Glide https://github.com/bumptech/glide#proguard
 ##############################################
+-keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.module.AppGlideModule
--keep class com.bumptech.glide.GeneratedAppGlideModuleImpl
 -keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
   **[] $VALUES;
   public *;
@@ -153,3 +153,7 @@
 -keepnames class com.rsastack.**
 -keep class **__Factory { *; }
 -keep class **__MemberInjector { *; }
+
+####################################################3
+# For staging
+-dontobfuscate

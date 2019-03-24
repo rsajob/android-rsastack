@@ -21,8 +21,12 @@ android {
     }
 
     buildTypes {
-
         debug {
+            debuggable true
+            minifyEnabled false
+        }
+
+        staging {
             debuggable true
             minifyEnabled false
         }
@@ -31,6 +35,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
     }
 }
 
