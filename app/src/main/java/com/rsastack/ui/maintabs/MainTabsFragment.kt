@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import com.rsastack.R
+import com.rsastack.system.navigation.BackButtonListener
+import com.rsastack.system.utils.debug
+import com.rsastack.system.utils.redispatchWindowInsetsToAllChildren
 import com.rsastack.toothpick.DI
 import com.rsastack.ui.Screens
 import com.rsastack.ui.SupportAppTabScreen
@@ -22,30 +26,22 @@ private const val CURRENT_TAB = "current_tab"
 class MainTabsFragment : BaseFragment(), MainTabsView {
 
     override val layoutRes = R.layout.fragment_main
+    private val tabs = listOf(Screens.TabHome, Screens.TabContacts)
 
     private val currentTabFragment: Fragment?
-        get() = childFragmentManager.fragments.firstOrNull { !it.isHidden } as? Fragment
+        get() = childFragmentManager.fragments.firstOrNull { !it.isHidden } // Обязательно именно так!!! а не findFragmentById(R.id.tab_container)
 
     @InjectPresenter
     lateinit var presenter: MainTabsPresenter
 
     @ProvidePresenter
-    fun providePresenter(): MainTabsPresenter = Toothpick.openScope(DI.TOP_FLOW_SCOPE).getInstance(
-        MainTabsPresenter::class.java)
+    fun providePresenter(): MainTabsPresenter = Toothpick.openScope(DI.TOP_FLOW_SCOPE).getInstance(MainTabsPresenter::class.java)
 
-    private val tabs = listOf(Screens.TabHome, Screens.TabContacts)
+    private var currentTab: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setupKeyboardModePan()
         return inflater.inflate(layoutRes, container, false)
-    }
-
-    private var currentTab: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (savedInstanceState == null)
-            initContainers()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -59,72 +55,56 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
         if (savedInstanceState != null)
             currentTab = savedInstanceState.getString(CURRENT_TAB, null)
 
+        setupWindowInsets()
         initBottomNavigation()
     }
 
-    private fun initContainers() {
-        val fm = childFragmentManager
-        tabs.forEach { tab ->
-            val fragment = createTabFragment(tab)
-            fm.beginTransaction()
-                .add(R.id.tab_container, fragment, tab.screenKey)
-                .detach(fragment)
-                .commitNow()
-        }
+    private fun setupWindowInsets(){
+        tab_container.redispatchWindowInsetsToAllChildren()
     }
 
-
     private fun initBottomNavigation() {
-        bottom_navigation.setOnNavigationItemSelectedListener { item ->
-            tabs.find { it.navigationIdRes == item.itemId }?.let { selectTab(it) }
-            true
-        }
-
         // Default Tab
         if (currentTab == null)
             currentTab = Screens.TabHome.screenKey
 
-        currentTab?.let { selectTabByName(it) }
+        currentTab?.let { selectTabByScreenKey(it) }
+
+        // bottom_navigation.labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_UNLABELED
+
+        // Listener выставляем обязательно после установки первого таба, иначе selectTab будет вызван 2 раза
+        bottom_navigation.setOnNavigationItemSelectedListener { item ->
+            tabs.find { it.navigationIdRes == item.itemId }?.let { selectTab(it) }
+            true
+        }
     }
 
-    private fun selectTabByName(screenKey: String) {
-        tabs.find { it.screenKey == screenKey }?.let {screen ->
+    private fun selectTabByScreenKey(screenKey: String) {
+        tabs.find { it.screenKey == screenKey }?.let { screen ->
             selectTab(screen)
             bottom_navigation.selectedItemId = screen.navigationIdRes
         }
     }
 
-
     private fun selectTab(tab: SupportAppTabScreen) {
         currentTab = tab.screenKey
         val currentFragment = currentTabFragment
         val newFragment = childFragmentManager.findFragmentByTag(tab.screenKey)
-
         if (currentFragment != null && newFragment != null && currentFragment == newFragment) return
 
         childFragmentManager.beginTransaction().apply {
-            //            if (newFragment == null) {
-//                add(R.id.tab_container, createTabFragment(tab), tab.screenKey)
-//            }
 
-            currentFragment?.let {
-                detach(it)
-//                hide(it)
-//                it.userVisibleHint = false
-            }
-            newFragment?.let {
-                attach(it)
-//                show(it)
-//                it.userVisibleHint = true
-            }
+            currentFragment?.let { detach(it) }
+
+            if (newFragment != null)
+                attach(newFragment)
+            else
+                add(R.id.tab_container, createTabFragment(tab), tab.screenKey)
+
         }.commitNow()
     }
 
     private fun createTabFragment(tab: SupportAppScreen) = tab.fragment
 
-    override fun onBackPressed() {
-        (currentTabFragment as? com.rsastack.system.navigation.BackButtonListener)?.onBackPressed()
-    }
-
-
+    override fun onBackPressed() { (currentTabFragment as? BackButtonListener)?.onBackPressed() }
 }
