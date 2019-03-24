@@ -8,7 +8,7 @@
   * Toothpick
   * Single-Activity with Flows and UI-Scopes (Toothpick) 
   * RxJava and Kotlin Coroutines
-  * AndroiX
+  * AndroidX
   * Material components
 
 Этот проект является скелетом (шаблоном), он содержит в себе стек технологий которорый я применяю для всех Android проектов, которые я делаю, и всем его рекомендую. Реальный проект почти на том же стеке можно посмотреть тут https://gitlab.com/terrakok/gitlab-client
