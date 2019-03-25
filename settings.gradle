@@ -1,1 +1,1 @@
-include ':app', ':library', ':uicore'
+include ':app', ':rsastack', ':uicore'

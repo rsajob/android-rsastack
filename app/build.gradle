@@ -89,7 +89,7 @@ android {
 
 dependencies {
 
-    implementation project(':library')
+    implementation project(':rsastack')
     implementation project(':uicore')
 
     // Kotlin
