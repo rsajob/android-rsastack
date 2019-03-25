@@ -6,8 +6,7 @@ import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.rsastack.system.navigation.setLaunchScreen
-import com.rsastack.system.singleactivity.FlowFragment
-import com.rsastack.system.toothpick.FlowNavigationModule
+import com.rsastack.system.toothpick.flowModule
 import com.rsastack.system.toothpick.initDynamicUiScope
 import ru.terrakok.cicerone.Router
 import toothpick.Toothpick
@@ -21,7 +20,7 @@ class TopFlowFragment: com.rsastack.system.singleactivity.FlowFragment(), MvpVie
         DI.TOP_FLOW_SCOPE = realScopeName // Save the dynamic scope name
         val scope = Toothpick.openScopes(DI.SERVER_SCOPE, DI.TOP_FLOW_SCOPE)
         scope.installModules(
-            com.rsastack.system.toothpick.FlowNavigationModule(scope.getInstance(Router::class.java))
+            flowModule(scope.getInstance(Router::class.java))
         )
     }
 

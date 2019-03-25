@@ -8,12 +8,15 @@ import com.arellomobile.mvp.MvpPresenter
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.rsastack.system.navigation.FlowRouter
 import com.rsastack.system.navigation.setLaunchScreen
 import com.rsastack.system.singleactivity.FlowFragment
+import com.rsastack.system.toothpick.flowModule
 import com.rsastack.system.toothpick.initDynamicUiScope
 import com.rsastack.toothpick.DI
 import com.rsastack.ui.Screens
 import com.rsastack.system.utils.setupKeyboardModeResize
+import ru.terrakok.cicerone.Router
 import toothpick.Toothpick
 import javax.inject.Inject
 
@@ -23,7 +26,7 @@ class AuthFlowFragment: FlowFragment(), MvpView {
         DI.AUTH_FLOW_SCOPE = realScopeName // Save the dynamic scope name
         val scope = Toothpick.openScopes(DI.TOP_FLOW_SCOPE, DI.AUTH_FLOW_SCOPE)
         scope.installModules(
-            com.rsastack.system.toothpick.FlowNavigationModule(scope.getInstance(com.rsastack.system.navigation.FlowRouter::class.java))
+            flowModule(scope.getInstance(FlowRouter::class.java))
         )
     }
 
