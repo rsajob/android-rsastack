@@ -149,7 +149,7 @@
 ####################################################3
 # For Toothpick 2.x (https://github.com/stephanenicolas/toothpick/blob/master/smoothie/proguard-rules.txt)
 -adaptclassstrings **
--keepnames class com.freshtaxi.**
+-keepnames class com.myapp.**
 -keepnames class com.rsastack.**
 -keep class **__Factory { *; }
 -keep class **__MemberInjector { *; }
