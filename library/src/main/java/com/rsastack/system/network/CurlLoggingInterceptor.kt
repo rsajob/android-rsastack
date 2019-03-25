@@ -1,4 +1,4 @@
-package com.rsastack.network.interceptors
+package com.rsastack.system.network
 
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -30,6 +30,11 @@ class CurlLoggingInterceptor(private val logger: Logger = Logger.DEFAULT) : Inte
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
+        logRequest(chain)
+        return chain.proceed(chain.request())
+    }
+
+    private fun logRequest(chain: Interceptor.Chain) {
         val request = chain.request()
 
         var compressed = false
@@ -69,7 +74,6 @@ class CurlLoggingInterceptor(private val logger: Logger = Logger.DEFAULT) : Inte
         logger.log("╭--- cURL (" + request.url() + ")")
         logger.log(curlCmd)
         logger.log("╰--- (copy and paste the above line to a terminal)")
-
-        return chain.proceed(request)
     }
+
 }

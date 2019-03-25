@@ -1,7 +1,7 @@
 package com.rsastack.toothpick.providers
 
 import com.rsastack.BuildConfig
-import com.rsastack.network.interceptors.CurlLoggingInterceptor
+import com.rsastack.system.network.CurlLoggingInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit
