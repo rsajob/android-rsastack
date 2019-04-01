@@ -52,7 +52,7 @@ class UiScopeDelegate<MvpFragment: Fragment>(
     private val initScope: ((String) -> Unit)? = null
 )
 {
-    lateinit var realScopeName:String
+    private var realScopeName:String? = null
 
     init {
         mvpDelegate.lifecycleObserver = object : MvpDelegateObservable.LifecycleObserver {
@@ -83,8 +83,10 @@ class UiScopeDelegate<MvpFragment: Fragment>(
 
     fun closeScope()
     {
-        Log.i("Toothpick", "Close scope $realScopeName")
-        Toothpick.closeScope(realScopeName)
+        if (realScopeName != null) {
+            Log.i("Toothpick", "Close scope $realScopeName")
+            Toothpick.closeScope(realScopeName)
+        }
     }
 
 }
