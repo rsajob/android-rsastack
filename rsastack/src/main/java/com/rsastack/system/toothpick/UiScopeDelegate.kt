@@ -33,7 +33,7 @@ import kotlin.reflect.KProperty
  * но скоуп не будет инициализирован, поэтому если аргумент установлен, мы проверяем не открыт ли скоуп, если не
  * открыт то инициализируем.
  *
- * Сохранение имени скоупа в аргументы фрагмента ещё нужно для динамических скоупов, когда мы генерируем имя скойпа при
+ * Сохранение имени скоупа в аргументы фрагмента ещё нужно для динамических скоупов, когда мы генерируем имя скоупа при
  * открытии фрагмента первый раз.
  *
  * Класс жёстко связан с Moxy и Mvp фрагментами. UiScopeDelegate следит за жизненным циклом Mvp-делагата
@@ -64,27 +64,27 @@ class UiScopeDelegate<MvpFragment: Fragment>(
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): String
     {
-        var realScopeName = fragment.arguments?.getString(ARG_SCOPE_NAME)
-        if (realScopeName == null) {
-            realScopeName = initScopeName
+        var scopeName = fragment.arguments?.getString(ARG_SCOPE_NAME)
+        if (scopeName == null) {
+            scopeName = initScopeName
             // Save scope name to fragment arguments
-            fragment.arguments = (fragment.arguments ?: Bundle()).apply { putString(ARG_SCOPE_NAME, realScopeName) }
+            fragment.arguments = (fragment.arguments ?: Bundle()).apply { putString(ARG_SCOPE_NAME, scopeName) }
         }
 
-        if (!Toothpick.isScopeOpen(realScopeName)) {
-            Log.v(LOG_TAG, "Init new UI scope: $realScopeName")
-            initScope?.invoke(realScopeName)
+        if (!Toothpick.isScopeOpen(scopeName)) {
+            Log.v(LOG_TAG, "Init new UI scope: $scopeName")
+            initScope?.invoke(scopeName)
         }
 
-        this.realScopeName = realScopeName
-        return realScopeName
+        this.realScopeName = scopeName
+        return scopeName
     }
 
 
     fun closeScope()
     {
         if (realScopeName != null) {
-            Log.i("Toothpick", "Close scope $realScopeName")
+            Log.i(LOG_TAG, "Close UI scope $realScopeName")
             Toothpick.closeScope(realScopeName)
         }
     }
