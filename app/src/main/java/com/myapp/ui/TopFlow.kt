@@ -13,6 +13,7 @@ import toothpick.Toothpick
 import javax.inject.Inject
 
 import com.myapp.toothpick.DI
+import com.rsastack.system.navigation.FlowRouter
 
 class TopFlowFragment: com.rsastack.system.singleactivity.FlowFragment(), MvpView {
 
@@ -48,10 +49,10 @@ class TopFlowFragment: com.rsastack.system.singleactivity.FlowFragment(), MvpVie
 
 
 class TopFlowPresenter @Inject constructor(
-        private val router: Router
+        private val router: FlowRouter
 ): MvpPresenter<MvpView>()
 {
     fun onExit() {
-        router.exit()
+        router.finishFlow()
     }
 }
