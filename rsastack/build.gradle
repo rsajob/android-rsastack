@@ -65,8 +65,8 @@ dependencies {
     implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
 
     // Toothpick
-    implementation 'com.github.stephanenicolas.toothpick:toothpick-runtime:2.1.0'
-    kapt "com.github.stephanenicolas.toothpick:toothpick-compiler:2.1.0"
+    implementation 'com.github.stephanenicolas.toothpick:toothpick-runtime:3.0.2'
+    kapt "com.github.stephanenicolas.toothpick:toothpick-compiler:3.0.2"
 
     // OkHttp3
     implementation 'com.squareup.okhttp3:okhttp:3.14.4'

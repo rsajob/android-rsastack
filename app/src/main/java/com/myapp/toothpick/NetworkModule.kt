@@ -7,6 +7,6 @@ import com.rsastack.system.toothpick.module
 import okhttp3.OkHttpClient
 
 fun networkModule() = module {
-    bind(AuthData::class.java).to(AuthDataPrefs::class.java).singletonInScope()
-    bind(OkHttpClient::class.java).toProvider(OkHttpProvider::class.java).providesSingletonInScope()
+    bind(AuthData::class.java).to(AuthDataPrefs::class.java).singleton()
+    bind(OkHttpClient::class.java).toProvider(OkHttpProvider::class.java).providesSingleton()
 }
