@@ -59,3 +59,15 @@ fun Any.err(message: String, throwable: Throwable? = null) {
         throwable
     )
 }
+
+@SuppressLint("LogNotTimber")
+fun Any.err(throwable: Throwable) {
+    if (isLogEnabled) {
+        val message = " ${throwable.javaClass.simpleName} ${throwable.message}"
+        Log.e(
+                logPrefix + if (javaClass.simpleName.isNotEmpty()) javaClass.simpleName else javaClass.name,
+                logPrefix + message,
+                throwable
+        )
+    }
+}
