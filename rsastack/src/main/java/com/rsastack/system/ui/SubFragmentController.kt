@@ -6,14 +6,14 @@ import androidx.fragment.app.FragmentManager
 
 
 class SubFragmentController(
-    private val subContainerId: Int,
-    private val subTags: List<String>,
-    private val subFragmentsFactory: (String)-> Fragment,
-    private val firstSubIndex: Int = 0
-    )
+        private val subContainerId: Int,
+        private val factories:HashMap<String, ()-> Fragment>,
+        private val firstSubIndex: Int = 0
+)
 {
-    lateinit var fm: FragmentManager
-    lateinit var subFragments: Map<String, Fragment>
+    private lateinit var fm: FragmentManager
+    private lateinit var subFragments: Map<String, Fragment>
+    private var subTags: List<String> = factories.keys.toList()
 
     /**
      * Must be called from fragment or activity onCreate()
@@ -30,7 +30,7 @@ class SubFragmentController(
 
     fun init()
     {
-        subFragments = subTags.map { tag -> tag to subFragmentsFactory(tag)}.toMap()
+        subFragments = subTags.map { tag -> tag to factories[tag]!!.invoke()}.toMap()
         initTabs()
     }
 
