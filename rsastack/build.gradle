@@ -66,9 +66,9 @@ dependencies {
     implementation 'com.github.stephanenicolas.toothpick:toothpick-runtime:3.0.2'
     kapt "com.github.stephanenicolas.toothpick:toothpick-compiler:3.0.2"
 
-    // OkHttp3
-    implementation 'com.squareup.okhttp3:okhttp:3.14.4'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.14.4'
+    // OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:4.2.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.2'
 
     // adapter delegates
     implementation('com.hannesdorfmann:adapterdelegates4:4.0.0') { transitive = false }
