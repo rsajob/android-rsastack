@@ -3,6 +3,7 @@ package com.rsastack.system.ui.recycler
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
+import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 
 /**
  * Created by Roman Savelev (aka @rsa) on 12/26/18.
@@ -14,8 +15,13 @@ interface ListItem
     fun areContentsTheSame(o: ListItem):Boolean
 }
 
-abstract class ListItemAdapterDelegate<I : ListItem, VH : RecyclerView.ViewHolder>
-    : AbsListItemAdapterDelegate<I, ListItem, VH>()
+abstract class ListItemAdapterDelegate<LI : ListItem, VH : RecyclerView.ViewHolder>
+    : AbsListItemAdapterDelegate<LI, ListItem, VH>()
+
+abstract class AsyncListDifferDelegationAdapterForListItem : AsyncListDifferDelegationAdapter<ListItem>(object : DiffUtil.ItemCallback<ListItem>() {
+    override fun areItemsTheSame(oldItem: ListItem, newItem: ListItem) = newItem.areItemsTheSame(oldItem)
+    override fun areContentsTheSame(oldItem: ListItem, newItem: ListItem) = newItem.areContentsTheSame(oldItem)
+})
 
 class DiffCallbackForListItem(
     private val newData: List<ListItem>,
