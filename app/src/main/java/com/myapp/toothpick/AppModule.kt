@@ -3,10 +3,10 @@ package com.myapp.toothpick
 import android.content.Context
 import com.rsastack.system.rx.RxSchedulers
 import com.rsastack.system.rx.SchedulersProvider
-import com.rsastack.system.toothpick.module
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
+import toothpick.ktp.binding.module
 
 fun appModule(context: Context) = module {
     //Global
