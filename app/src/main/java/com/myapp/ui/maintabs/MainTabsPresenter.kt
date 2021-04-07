@@ -16,7 +16,7 @@ interface MainTabsView : MvpView {
 
 @InjectViewState
 class MainTabsPresenter @Inject constructor(
-    private val router: com.rsastack.system.navigation.FlowRouter
+    private val router: FlowRouter
 ) : MvpPresenter<MainTabsView>() {
 
     fun onBackPressed() {

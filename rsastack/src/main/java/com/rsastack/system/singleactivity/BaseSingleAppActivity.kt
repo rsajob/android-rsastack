@@ -1,13 +1,11 @@
 package com.rsastack.system.singleactivity
 
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.arellomobile.mvp.MvpView
 import com.rsastack.system.navigation.BackButtonListener
-import ru.terrakok.cicerone.Navigator
-import ru.terrakok.cicerone.NavigatorHolder
-import ru.terrakok.cicerone.android.support.SupportAppNavigator
-import ru.terrakok.cicerone.commands.Command
+import com.github.terrakok.cicerone.Navigator
+import com.github.terrakok.cicerone.NavigatorHolder
+import com.github.terrakok.cicerone.androidx.AppNavigator
+import com.github.terrakok.cicerone.Command
 import com.rsastack.R
 import com.rsastack.system.moxy.MvpAppCompatActivity
 import javax.inject.Inject
@@ -18,27 +16,15 @@ import javax.inject.Inject
 abstract class BaseSingleAppActivity: MvpAppCompatActivity(), MvpView
 {
     val layoutRes: Int = R.layout.layout_flow_container
-    val containerId: Int = R.id.flow_container
+    val navigationContainerId: Int = R.id.flow_container
 
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
 
     private val currentFragment: BackButtonListener?
-        get() = supportFragmentManager.findFragmentById(containerId) as? BackButtonListener
+        get() = supportFragmentManager.findFragmentById(navigationContainerId) as? BackButtonListener
 
-    private val navigator: Navigator =
-        object : SupportAppNavigator(this, supportFragmentManager, containerId) {
-
-            override fun setupFragmentTransaction(
-                command: Command,
-                currentFragment: Fragment?,
-                nextFragment: Fragment?,
-                fragmentTransaction: FragmentTransaction
-            ){
-                //fix incorrect order lifecycle callback of MainFlowFragment
-                fragmentTransaction.setReorderingAllowed(true)
-            }
-        }
+    private val navigator: Navigator = AppNavigator(this, navigationContainerId)
 
     override fun onResumeFragments() {
         super.onResumeFragments()

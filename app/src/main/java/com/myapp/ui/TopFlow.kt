@@ -8,14 +8,15 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.rsastack.system.navigation.setLaunchScreen
 import com.rsastack.system.toothpick.flowModule
 import com.rsastack.system.toothpick.initDynamicUiScope
-import ru.terrakok.cicerone.Router
+import com.github.terrakok.cicerone.Router
 import toothpick.Toothpick
 import javax.inject.Inject
 
 import com.myapp.toothpick.DI
 import com.rsastack.system.navigation.FlowRouter
+import com.rsastack.system.singleactivity.FlowFragment
 
-class TopFlowFragment: com.rsastack.system.singleactivity.FlowFragment(), MvpView {
+class TopFlowFragment: FlowFragment(), MvpView {
 
     private val scopeName:String by initDynamicUiScope { realScopeName ->
         DI.TOP_FLOW_SCOPE = realScopeName // Save the dynamic scope name
@@ -29,16 +30,15 @@ class TopFlowFragment: com.rsastack.system.singleactivity.FlowFragment(), MvpVie
     lateinit var presenter: TopFlowPresenter
 
     @ProvidePresenter
-    fun providePresenter() =
-            Toothpick.openScope(scopeName)
-                    .getInstance(TopFlowPresenter::class.java)
+    fun providePresenter() = Toothpick.openScope(scopeName).getInstance(TopFlowPresenter::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Toothpick.inject(this, Toothpick.openScope(scopeName))
 
         super.onCreate(savedInstanceState)
+
         if (childFragmentManager.fragments.isEmpty())
-            navigator.setLaunchScreen(Screens.Splash)
+            navigator.setLaunchScreen(Screens.Splash())
     }
 
     override fun onExit() {

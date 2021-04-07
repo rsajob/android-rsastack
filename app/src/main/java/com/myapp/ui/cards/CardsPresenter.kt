@@ -16,7 +16,7 @@ interface CardsView : MvpView {
 
 @InjectViewState
 class CardsPresenter @Inject constructor(
-    private val router: com.rsastack.system.navigation.FlowRouter
+    private val router: FlowRouter
 ) : MvpPresenter<CardsView>() {
 
     fun onBackPressed() {

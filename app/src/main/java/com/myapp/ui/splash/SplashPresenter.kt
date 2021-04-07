@@ -22,7 +22,7 @@ interface SplashView : MvpView {
 
 @InjectViewState
 class SplashPresenter @Inject constructor(
-    val router: com.rsastack.system.navigation.FlowRouter,
+    val router: FlowRouter,
     private val authInteractor: AuthInteractor
 ) : MvpPresenter<SplashView>() {
 
@@ -40,9 +40,9 @@ class SplashPresenter @Inject constructor(
 
     private fun toNextScreen() {
         if (!authInteractor.isLoggedIn())
-            router.newRootScreen(Screens.AuthFlow)
+            router.newRootScreen(Screens.AuthFlow())
         else
-            router.newRootScreen(Screens.MainTabs)
+            router.newRootScreen(Screens.MainTabs())
     }
 
     fun onRetry(){
@@ -50,7 +50,7 @@ class SplashPresenter @Inject constructor(
     }
 
     fun doNext() {
-        router.newRootScreen(Screens.AuthFlow)
+        router.newRootScreen(Screens.AuthFlow())
     }
 
     fun onBack() {

@@ -1,9 +1,9 @@
 package com.rsastack.system.navigation
 
-import ru.terrakok.cicerone.Router
-import ru.terrakok.cicerone.Screen
-import ru.terrakok.cicerone.commands.BackTo
-import ru.terrakok.cicerone.commands.Forward
+import com.github.terrakok.cicerone.Router
+import com.github.terrakok.cicerone.Screen
+import com.github.terrakok.cicerone.BackTo
+import com.github.terrakok.cicerone.Forward
 
 class FlowRouter(val appRouter: Router) : Router() {
 
@@ -23,7 +23,7 @@ class FlowRouter(val appRouter: Router) : Router() {
     {
         executeCommands(
                 BackTo(null),
-                Forward(screen)
+                Forward(screen, false)
         )
     }
 
@@ -31,7 +31,7 @@ class FlowRouter(val appRouter: Router) : Router() {
     {
         executeCommands(
             BackTo(backToScreen),
-            Forward(navToScreen)
+            Forward(navToScreen, false)
         )
     }
 

@@ -17,7 +17,7 @@ interface HomeView : MvpView {
 
 @InjectViewState
 class HomePresenter @Inject constructor(
-    private val router: com.rsastack.system.navigation.FlowRouter,
+    private val router: FlowRouter,
     private val authInteractor: AuthInteractor
 ) : MvpPresenter<HomeView>() {
 
@@ -27,7 +27,7 @@ class HomePresenter @Inject constructor(
 
     fun pressLogout() {
         authInteractor.logout()
-        router.newRootScreen(Screens.AuthFlow)
+        router.newRootScreen(Screens.AuthFlow())
     }
 
 }

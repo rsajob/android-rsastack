@@ -26,7 +26,7 @@ interface PhoneView : MvpView {
 
 @InjectViewState
 class PhonePresenter @Inject constructor(
-    private val router: com.rsastack.system.navigation.FlowRouter,
+    private val router: FlowRouter,
     private val authInteractor:AuthInteractor
 ) : MvpPresenter<PhoneView>() {
 
@@ -47,7 +47,7 @@ class PhonePresenter @Inject constructor(
             .doFinally { viewState.showProgress(false) }
             .subscribe(
                 {
-                    router.navigateTo(Screens.AuthSms)
+                    router.navigateTo(Screens.AuthSms())
                 },
                 {
                     val msg = it.message ?: it.javaClass.simpleName

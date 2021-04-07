@@ -7,18 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import com.google.android.material.bottomnavigation.LabelVisibilityMode
+import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.myapp.R
 import com.rsastack.system.navigation.BackButtonListener
-import com.rsastack.system.utils.debug
 import com.rsastack.system.utils.redispatchWindowInsetsToAllChildren
 import com.myapp.toothpick.DI
 import com.myapp.ui.Screens
-import com.myapp.ui.SupportAppTabScreen
+import com.myapp.ui.AppTabScreen
 import com.myapp.ui.common.BaseFragment
 import com.rsastack.system.utils.setupKeyboardModePan
 import kotlinx.android.synthetic.main.fragment_main.*
-import ru.terrakok.cicerone.android.support.SupportAppScreen
 import toothpick.Toothpick
 
 private const val CURRENT_TAB = "current_tab"
@@ -26,7 +24,7 @@ private const val CURRENT_TAB = "current_tab"
 class MainTabsFragment : BaseFragment(), MainTabsView {
 
     override val layoutRes = R.layout.fragment_main
-    private val tabs = listOf(Screens.TabHome, Screens.TabContacts)
+    private val tabs = listOf(Screens.TabHome(), Screens.TabContacts())
 
     private val currentTabFragment: Fragment?
         get() = childFragmentManager.fragments.firstOrNull { !it.isHidden } // Обязательно именно так!!! а не findFragmentById(R.id.tab_container)
@@ -66,7 +64,7 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
     private fun initBottomNavigation() {
         // Default Tab
         if (currentTab == null)
-            currentTab = Screens.TabHome.screenKey
+            currentTab = Screens.TabHome().screenKey
 
         currentTab?.let { selectTabByScreenKey(it) }
 
@@ -86,7 +84,7 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
         }
     }
 
-    private fun selectTab(tab: SupportAppTabScreen) {
+    private fun selectTab(tab: AppTabScreen) {
         currentTab = tab.screenKey
         val currentFragment = currentTabFragment
         val newFragment = childFragmentManager.findFragmentByTag(tab.screenKey)
@@ -99,12 +97,12 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
             if (newFragment != null)
                 attach(newFragment)
             else
-                createTabFragment(tab)?. let { add(R.id.tab_container, it, tab.screenKey) }
+                add(R.id.tab_container, createTabFragment(tab), tab.screenKey)
 
         }.commitNow()
     }
 
-    private fun createTabFragment(tab: SupportAppScreen) = tab.fragment
+    private fun createTabFragment(tab: FragmentScreen) = tab.createFragment(childFragmentManager.fragmentFactory)
 
     override fun onBackPressed() { (currentTabFragment as? BackButtonListener)?.onBackPressed() }
 }

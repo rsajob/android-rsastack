@@ -47,7 +47,7 @@ class SmsPresenter @Inject constructor(
             .doFinally { viewState.showProgress(false) }
             .subscribe(
                 {
-                    router.newRootFlow(Screens.MainTabs)
+                    router.newRootFlow(Screens.MainTabs())
                 },
                 {
                     val msg = it.message ?: it.javaClass.simpleName

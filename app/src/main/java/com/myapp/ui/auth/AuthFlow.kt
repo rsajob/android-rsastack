@@ -16,7 +16,6 @@ import com.rsastack.system.toothpick.initDynamicUiScope
 import com.myapp.toothpick.DI
 import com.myapp.ui.Screens
 import com.rsastack.system.utils.setupKeyboardModeResize
-import ru.terrakok.cicerone.Router
 import toothpick.Toothpick
 import javax.inject.Inject
 
@@ -45,7 +44,7 @@ class AuthFlowFragment: FlowFragment(), MvpView {
         Toothpick.inject(this, Toothpick.openScope(scopeName))
         super.onCreate(savedInstanceState)
         if (childFragmentManager.fragments.isEmpty()) {
-            navigator.setLaunchScreen(Screens.AuthPhone)
+            navigator.setLaunchScreen(Screens.AuthPhone())
         }
     }
 
@@ -57,7 +56,7 @@ class AuthFlowFragment: FlowFragment(), MvpView {
 
 
 class AuthFlowPresenter @Inject constructor(
-        private val router: com.rsastack.system.navigation.FlowRouter
+        private val router: FlowRouter
 ): MvpPresenter<MvpView>()
 {
     fun onExit() {
