@@ -111,8 +111,8 @@ fun bundleOf(vararg params: Pair<String, Any>): Bundle {
     return b
 }
 
-fun Activity.getIntExtra(key: String, defValue: Int): Int = this.intent.extras.getInt(key, defValue)
-fun Activity.getSerializableExtra(key: String): Serializable? = this.intent.extras.getSerializable(key)
+fun Activity.getIntExtra(key: String, defValue: Int): Int = this.intent.extras?.getInt(key, defValue) ?: defValue
+fun Activity.getSerializableExtra(key: String): Serializable? = this.intent.extras?.getSerializable(key)
 fun <T : Intent> T.withArguments(vararg params: Pair<String, Any>): T {
     val bundle = bundleOf(*params)
     this.putExtras(bundle)

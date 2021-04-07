@@ -27,7 +27,7 @@ abstract class FlowFragment : MvpAppCompatFragment(),
     lateinit var navigatorHolder: NavigatorHolder
 
     protected val navigator: Navigator by lazy {
-        object : SupportAppNavigator(activity, childFragmentManager, containerId) {
+        object : SupportAppNavigator(requireActivity(), childFragmentManager, containerId) {
             override fun activityBack() {
                 onExit()
             }

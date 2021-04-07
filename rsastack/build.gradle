@@ -4,10 +4,10 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -18,6 +18,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+        useIR = true
     }
 
     buildTypes {
@@ -46,34 +51,35 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
     // Support
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.1.0-rc02'
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0-beta01'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
 
     // RxJava
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.17'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
 
     // Moxy - lib for MVP architect (Used the custom moxy build with fixed bug with custom view)
     implementation fileTree(include: ['moxy*.jar'], excludes: ['moxy-compiler*.jar'], dir: 'libs')
     kapt files('libs/moxy-compiler-1.5.6.jar')
 
     // Cicerone (Navigation pattern)
-    implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
+    implementation 'ru.terrakok.cicerone:cicerone:5.1.1'
 
     // Toothpick
     implementation "com.github.stephanenicolas.toothpick:toothpick-runtime:3.1.0"
     implementation 'com.github.stephanenicolas.toothpick:ktp:3.1.0'
     kapt "com.github.stephanenicolas.toothpick:toothpick-compiler:3.1.0"
 
-    // OkHttp3
-    implementation 'com.squareup.okhttp3:okhttp:4.3.1'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.3.1'
+    // OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
 
     // adapter delegates
-    implementation('com.hannesdorfmann:adapterdelegates4:4.2.0') { transitive = false }
+    implementation('com.hannesdorfmann:adapterdelegates4:4.3.0') { transitive = false }
 
 }
 

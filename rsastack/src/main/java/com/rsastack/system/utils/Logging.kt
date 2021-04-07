@@ -7,8 +7,8 @@ import com.rsastack.system.utils.LoggerSettings.isLogEnabled
 import com.rsastack.system.utils.LoggerSettings.logPrefix
 
 object LoggerSettings {
-    val logPrefix = "deit/"
-    val isLogEnabled = BuildConfig.BUILD_TYPE != "release"
+    var logPrefix = "deit/"
+    var isLogEnabled = BuildConfig.BUILD_TYPE != "release"
 }
 
 @SuppressLint("LogNotTimber")

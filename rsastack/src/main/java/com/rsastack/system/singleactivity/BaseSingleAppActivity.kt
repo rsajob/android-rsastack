@@ -30,7 +30,7 @@ abstract class BaseSingleAppActivity: MvpAppCompatActivity(), MvpView
         object : SupportAppNavigator(this, supportFragmentManager, containerId) {
 
             override fun setupFragmentTransaction(
-                command: Command?,
+                command: Command,
                 currentFragment: Fragment?,
                 nextFragment: Fragment?,
                 fragmentTransaction: FragmentTransaction

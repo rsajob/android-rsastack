@@ -99,7 +99,7 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
             if (newFragment != null)
                 attach(newFragment)
             else
-                add(R.id.tab_container, createTabFragment(tab), tab.screenKey)
+                createTabFragment(tab)?. let { add(R.id.tab_container, it, tab.screenKey) }
 
         }.commitNow()
     }
