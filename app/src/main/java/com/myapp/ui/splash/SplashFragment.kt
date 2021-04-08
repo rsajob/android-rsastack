@@ -1,21 +1,21 @@
 package com.myapp.ui.splash
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_splash.*
 import com.myapp.ui.common.BaseFragment
-import com.myapp.R
+import com.myapp.databinding.FragmentSplashBinding
 import com.myapp.toothpick.DI
+import com.rsastack.system.navigation.BackButtonListener
 import com.rsastack.system.utils.visible
 import toothpick.Toothpick
 
-class SplashFragment : BaseFragment() , SplashView,
-    com.rsastack.system.navigation.BackButtonListener
+class SplashFragment : BaseFragment() , SplashView, BackButtonListener
 {
-    override val layoutRes = R.layout.fragment_splash
     private var errorSnackbar: Snackbar? = null
 
     @InjectPresenter
@@ -25,17 +25,32 @@ class SplashFragment : BaseFragment() , SplashView,
     fun providePresenter(): SplashPresenter = Toothpick.openScope(DI.TOP_FLOW_SCOPE).getInstance(
         SplashPresenter::class.java)
 
+    // =========== View Binding ================
+    private var _binding: FragmentSplashBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View {
+        _binding = FragmentSplashBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+    // =========================================
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
 
     override fun showProgress() {
-        progress.visible(true)
+        binding.progress.visible(true)
         errorSnackbar?.dismiss()
     }
 
     override fun showError(msg: String) {
-        progress.visible(false)
+        binding.progress.visible(false)
         errorSnackbar?.dismiss()
 
         view?.let {view ->

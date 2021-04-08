@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 // For change release apk-file name and version
@@ -30,6 +29,10 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     signingConfigs {
@@ -101,7 +104,7 @@ dependencies {
 
     // Support
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0-beta01'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
     implementation 'com.google.android.material:material:1.3.0'
@@ -158,11 +161,4 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.230'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.3.0'
 }
-
-kotlin {
-    androidExtensions {
-        experimental = true
-    }
-}
-
 

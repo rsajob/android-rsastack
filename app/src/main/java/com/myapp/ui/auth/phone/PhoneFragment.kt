@@ -8,9 +8,8 @@ import android.widget.Toast
 
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import kotlinx.android.synthetic.main.fragment_auth_phone.*
 import com.myapp.ui.common.BaseFragment
-import com.myapp.R
+import com.myapp.databinding.FragmentAuthPhoneBinding
 import com.myapp.toothpick.DI
 import com.rsastack.system.utils.hideKeyboard
 import com.rsastack.system.utils.visible
@@ -19,8 +18,6 @@ import toothpick.Toothpick
 
 class PhoneFragment : BaseFragment(), PhoneView {
 
-    override val layoutRes = R.layout.fragment_auth_phone
-
     @InjectPresenter
     lateinit var presenter: PhonePresenter
 
@@ -28,9 +25,20 @@ class PhoneFragment : BaseFragment(), PhoneView {
     fun providePresenter(): PhonePresenter = Toothpick.openScope(DI.AUTH_FLOW_SCOPE).getInstance(
         PhonePresenter::class.java)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(layoutRes, container, false)
+    // =========== View Binding ================
+    private var _binding: FragmentAuthPhoneBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View {
+        _binding = FragmentAuthPhoneBinding.inflate(inflater, container, false)
+        return binding.root
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+    // =========================================
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,19 +46,19 @@ class PhoneFragment : BaseFragment(), PhoneView {
     }
 
     private fun initControls() {
-        btn_next.setOnClickListener {
+        binding.btnNext.setOnClickListener {
             hideKeyboard()
-            val phoneString = phone_or_sms.text.toString()
+            val phoneString = binding.phoneOrSms.text.toString()
             presenter.pressNext(phoneString)
         }
-        btn_cancel.setOnClickListener {
+        binding.btnCancel.setOnClickListener {
             hideKeyboard()
             presenter.pressCancel()
         }
     }
 
     override fun showProgress(shown:Boolean){
-        login_progress.visible(shown)
+        binding.loginProgress.visible(shown)
     }
 
     override fun showMessage(msg: String) {

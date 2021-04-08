@@ -9,22 +9,38 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.myapp.R
+import com.myapp.databinding.FragmentMainBinding
 import com.rsastack.system.navigation.BackButtonListener
-import com.rsastack.system.utils.redispatchWindowInsetsToAllChildren
 import com.myapp.toothpick.DI
 import com.myapp.ui.Screens
 import com.myapp.ui.AppTabScreen
 import com.myapp.ui.common.BaseFragment
+import com.rsastack.system.utils.redispatchWindowInsetsToAllChildren
 import com.rsastack.system.utils.setupKeyboardModePan
-import kotlinx.android.synthetic.main.fragment_main.*
 import toothpick.Toothpick
 
 private const val CURRENT_TAB = "current_tab"
 
 class MainTabsFragment : BaseFragment(), MainTabsView {
 
-    override val layoutRes = R.layout.fragment_main
     private val tabs = listOf(Screens.TabHome(), Screens.TabContacts())
+
+    // =========== View Binding ================
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View {
+        setupKeyboardModePan()
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+    // =========================================
+
 
     private val currentTabFragment: Fragment?
         get() = childFragmentManager.fragments.firstOrNull { !it.isHidden } // Обязательно именно так!!! а не findFragmentById(R.id.tab_container)
@@ -36,11 +52,6 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
     fun providePresenter(): MainTabsPresenter = Toothpick.openScope(DI.TOP_FLOW_SCOPE).getInstance(MainTabsPresenter::class.java)
 
     private var currentTab: String? = null
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        setupKeyboardModePan()
-        return inflater.inflate(layoutRes, container, false)
-    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         currentTab?.let { outState.putString(CURRENT_TAB, it) }
@@ -58,7 +69,7 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
     }
 
     private fun setupWindowInsets(){
-        tab_container.redispatchWindowInsetsToAllChildren()
+        binding.tabContainer.redispatchWindowInsetsToAllChildren()
     }
 
     private fun initBottomNavigation() {
@@ -71,7 +82,7 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
         // bottom_navigation.labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_UNLABELED
 
         // Listener выставляем обязательно после установки первого таба, иначе selectTab будет вызван 2 раза
-        bottom_navigation.setOnNavigationItemSelectedListener { item ->
+        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             tabs.find { it.navigationIdRes == item.itemId }?.let { selectTab(it) }
             true
         }
@@ -80,7 +91,7 @@ class MainTabsFragment : BaseFragment(), MainTabsView {
     private fun selectTabByScreenKey(screenKey: String) {
         tabs.find { it.screenKey == screenKey }?.let { screen ->
             selectTab(screen)
-            bottom_navigation.selectedItemId = screen.navigationIdRes
+            binding.bottomNavigation.selectedItemId = screen.navigationIdRes
         }
     }
 
