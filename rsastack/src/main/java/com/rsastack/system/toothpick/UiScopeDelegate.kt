@@ -91,7 +91,7 @@ class UiScopeDelegate<MvpFragment: Fragment>(
 
 }
 
-fun uniqueScopeName(baseScopeName:String):String = "${baseScopeName}_${System.currentTimeMillis()}"
+fun Any.uniqueScopeName(baseScopeName:String):String = "${baseScopeName}_${System.currentTimeMillis()}_${hashCode()}"
 
 fun MvpAppCompatFragment.initUiScope(scopeName:String, initScope: ((String) -> Unit)?) =
     UiScopeDelegate(scopeName, this, this.mvpDelegate, initScope)
