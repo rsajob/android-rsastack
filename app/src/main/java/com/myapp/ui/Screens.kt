@@ -14,6 +14,7 @@ import com.myapp.ui.auth.phone.PhoneFragment
 import com.myapp.ui.auth.sms.SmsFragment
 import com.myapp.ui.cards.CardsFragment
 import com.myapp.ui.home.HomeFragment
+import com.myapp.ui.mvvmtest.LondonFragment
 
 open class AppTabScreen(@IdRes val navigationIdRes: Int,
                         key: String? = null,
@@ -27,6 +28,8 @@ object Screens {
     fun AuthFlow() = FragmentScreen { AuthFlowFragment() }
     fun AuthPhone() = FragmentScreen { PhoneFragment() }
     fun AuthSms() = FragmentScreen { SmsFragment() }
+    fun London() = FragmentScreen { LondonFragment() }
     fun TabHome() = AppTabScreen(R.id.navigation_home, "home") { HomeFragment() }
     fun TabContacts() = AppTabScreen(R.id.navigation_cards, "contacts") { CardsFragment() }
+
 }
