@@ -11,6 +11,7 @@ import com.myapp.databinding.FragmentLondonBinding
 class LondonFragment : Fragment() {
 
     private lateinit var viewModel:LondonViewModel
+    private lateinit var viewModelFactory:LondonViewModelFactory
 
     // =========== View Binding ================
     private var _binding: FragmentLondonBinding? = null
@@ -19,9 +20,16 @@ class LondonFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View {
         _binding = FragmentLondonBinding.inflate(inflater, container, false)
 
-        viewModel = ViewModelProvider(this).get(LondonViewModel::class.java)
+        viewModelFactory = LondonViewModelFactory(3)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(LondonViewModel::class.java)
 
         return binding.root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.counter.text = viewModel.score.toString()
     }
 
     override fun onDestroyView() {

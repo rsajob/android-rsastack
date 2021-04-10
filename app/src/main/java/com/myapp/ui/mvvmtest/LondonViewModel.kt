@@ -3,9 +3,9 @@ package com.myapp.ui.mvvmtest
 import androidx.lifecycle.ViewModel
 import com.rsastack.system.utils.debug
 
-class LondonViewModel: ViewModel() {
+class LondonViewModel(finalScore: Int): ViewModel() {
     // The current score
-    var score = 0
+    var score = finalScore
 
     init {
         debug("LondonViewModel created!")
