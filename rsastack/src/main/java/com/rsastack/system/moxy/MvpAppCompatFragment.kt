@@ -1,117 +1,89 @@
-package com.rsastack.system.moxy;
+package com.rsastack.system.moxy
 
-import android.os.Bundle;
-import androidx.fragment.app.Fragment;
+import android.os.Bundle
+import androidx.annotation.ContentView
+import androidx.annotation.LayoutRes
+import com.rsastack.system.base.AppFragment
+import moxy.MvpDelegate
+import moxy.MvpDelegateHolder
 
-import moxy.MvpDelegate;
-//import moxy.MvpDelegate;
+open class MvpAppCompatFragment : AppFragment, MvpDelegateHolder {
+    private var flagIsStateSaved = false
+    private var mvpDelegate: MvpDelegate<out MvpAppCompatFragment>? = null
 
-/**
- * Date: 25-July-18
- * Time: 4:43
- *
- * @author Vova Stelmashchuk
- */
+    constructor() : super()
 
-@SuppressWarnings({"ConstantConditions", "unused"})
-public class MvpAppCompatFragment extends Fragment {
+    @ContentView
+    constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
 
-    private boolean mIsStateSaved;
-
-    private MvpDelegateObservable<? extends MvpAppCompatFragment> mMvpDelegate;
-
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        getMvpDelegate().onCreate(savedInstanceState);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        getMvpDelegate().onCreate(savedInstanceState)
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        mIsStateSaved = false;
-
-        getMvpDelegate().onAttach();
+    override fun onStart() {
+        super.onStart()
+        flagIsStateSaved = false
+        getMvpDelegate().onAttach()
     }
 
-    public void onResume() {
-        super.onResume();
-
-        mIsStateSaved = false;
-
-        getMvpDelegate().onAttach();
+    override fun onResume() {
+        super.onResume()
+        flagIsStateSaved = false
+        getMvpDelegate().onAttach()
     }
 
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        mIsStateSaved = true;
-
-        getMvpDelegate().onSaveInstanceState(outState);
-        getMvpDelegate().onDetach();
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        flagIsStateSaved = true
+        getMvpDelegate().onSaveInstanceState(outState)
+        getMvpDelegate().onDetach()
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
+    override fun onStop() {
+        super.onStop()
+        getMvpDelegate().onDetach()
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        getMvpDelegate().onDetach();
+    override fun onDestroyView() {
+        super.onDestroyView()
+        getMvpDelegate().onDetach()
+        getMvpDelegate().onDestroyView()
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-        getMvpDelegate().onDetach();
-        getMvpDelegate().onDestroyView();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
+    override fun onDestroy() {
+        super.onDestroy()
 
         //We leave the screen and respectively all fragments will be destroyed
-        if (getActivity().isFinishing()) {
-            getMvpDelegate().onDestroy();
-            return;
+        if (requireActivity().isFinishing) {
+            getMvpDelegate().onDestroy()
+            return
         }
 
         // When we rotate device isRemoving() return true for fragment placed in backstack
         // http://stackoverflow.com/questions/34649126/fragment-back-stack-and-isremoving
-        if (mIsStateSaved) {
-            mIsStateSaved = false;
-            return;
+        if (flagIsStateSaved) {
+            flagIsStateSaved = false
+            return
         }
-
-        // See https://github.com/Arello-Mobile/Moxy/issues/24
-        boolean anyParentIsRemoving = false;
-        Fragment parent = getParentFragment();
+        var anyParentIsRemoving = false
+        var parent = parentFragment
         while (!anyParentIsRemoving && parent != null) {
-            anyParentIsRemoving = parent.isRemoving();
-            parent = parent.getParentFragment();
+            anyParentIsRemoving = parent.isRemoving
+            parent = parent.parentFragment
         }
-
-        if (isRemoving() || anyParentIsRemoving) {
-            getMvpDelegate().onDestroy();
+        if (isRemoving || anyParentIsRemoving) {
+            getMvpDelegate().onDestroy()
         }
     }
 
     /**
-     * @return The {@link MvpDelegate} being used by this Fragment.
+     * @return The [MvpDelegate] being used by this Fragment.
      */
-    public MvpDelegateObservable getMvpDelegate() {
-
-        if (mMvpDelegate == null) {
-            mMvpDelegate = new MvpDelegateObservable<>(this);
+    override fun getMvpDelegate(): MvpDelegate<*> {
+        if (mvpDelegate == null) {
+            mvpDelegate = MvpDelegate(this)
         }
-
-        return mMvpDelegate;
+        return mvpDelegate!!
     }
-
 }

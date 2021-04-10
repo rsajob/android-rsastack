@@ -2,18 +2,26 @@ package com.rsastack.system.moxy;
 
 import android.os.Bundle;
 
+import androidx.annotation.ContentView;
+import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.AppCompatActivity;
-import moxy.MvpDelegate;
 
-/**
- * Date: 25-July-18
- * Time: 2:51
- *
- * @author Vova Stelmashchuk
- */
+import moxy.MvpDelegate;
+import moxy.MvpDelegateHolder;
+
 @SuppressWarnings("unused")
-public class MvpAppCompatActivity extends AppCompatActivity {
-    private MvpDelegateObservable<? extends MvpAppCompatActivity> mMvpDelegate;
+public class MvpAppCompatActivity extends AppCompatActivity implements MvpDelegateHolder {
+
+    private MvpDelegate<? extends MvpAppCompatActivity> mvpDelegate;
+
+    public MvpAppCompatActivity() {
+        super();
+    }
+
+    @ContentView
+    public MvpAppCompatActivity(@LayoutRes int contentLayoutId) {
+        super(contentLayoutId);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +73,11 @@ public class MvpAppCompatActivity extends AppCompatActivity {
     /**
      * @return The {@link MvpDelegate} being used by this Activity.
      */
-    public MvpDelegateObservable getMvpDelegate() {
-        if (mMvpDelegate == null) {
-            mMvpDelegate = new MvpDelegateObservable<>(this);
+    @Override
+    public MvpDelegate getMvpDelegate() {
+        if (mvpDelegate == null) {
+            mvpDelegate = new MvpDelegate<>(this);
         }
-        return mMvpDelegate;
+        return mvpDelegate;
     }
 }
