@@ -3,10 +3,10 @@ package com.rsastack.system.toothpick
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
+import com.rsastack.system.base.AppDialogFragment
+import com.rsastack.system.base.AppFragment
 import com.rsastack.system.base.RealDestroyListener
 import com.rsastack.system.base.RealDestroyOwner
-import com.rsastack.system.moxy.MvpAppCompatDialogFragment
-import com.rsastack.system.moxy.MvpAppCompatFragment
 import toothpick.Toothpick
 import kotlin.reflect.KProperty
 
@@ -94,10 +94,10 @@ class UiScopeDelegate<MvpFragment: Fragment>(
 
 fun Any.uniqueScopeName(baseScopeName:String):String = "${baseScopeName}_${System.currentTimeMillis()}_${hashCode()}"
 
-fun MvpAppCompatFragment.initUiScope(scopeName:String, initScope: ((String) -> Unit)?) =
+fun AppFragment.initUiScope(scopeName:String, initScope: ((String) -> Unit)?) =
     UiScopeDelegate(scopeName, this,this, initScope)
 
-fun MvpAppCompatFragment.initDynamicUiScope(baseScopeName:String, initScope: ((String) -> Unit)?) =
+fun AppFragment.initDynamicUiScope(baseScopeName:String, initScope: ((String) -> Unit)?) =
     UiScopeDelegate(
         uniqueScopeName(baseScopeName),
         this,
@@ -105,7 +105,7 @@ fun MvpAppCompatFragment.initDynamicUiScope(baseScopeName:String, initScope: ((S
         initScope
     )
 
-fun MvpAppCompatFragment.initDynamicUiScope(initScope: ((String) -> Unit)?) =
+fun AppFragment.initDynamicUiScope(initScope: ((String) -> Unit)?) =
     UiScopeDelegate(
         uniqueScopeName(this::class.java.simpleName),
         this,
@@ -113,10 +113,10 @@ fun MvpAppCompatFragment.initDynamicUiScope(initScope: ((String) -> Unit)?) =
         initScope
     )
 
-fun MvpAppCompatDialogFragment.initUiScope(scopeName:String, initScope: ((String) -> Unit)?) =
+fun AppDialogFragment.initUiScope(scopeName:String, initScope: ((String) -> Unit)?) =
     UiScopeDelegate(scopeName, this, this, initScope)
 
-fun MvpAppCompatDialogFragment.initDynamicUiScope(baseScopeName:String, initScope: ((String) -> Unit)?) =
+fun AppDialogFragment.initDynamicUiScope(baseScopeName:String, initScope: ((String) -> Unit)?) =
     UiScopeDelegate(
         uniqueScopeName(baseScopeName),
         this,
@@ -124,7 +124,7 @@ fun MvpAppCompatDialogFragment.initDynamicUiScope(baseScopeName:String, initScop
         initScope
     )
 
-fun MvpAppCompatDialogFragment.initDynamicUiScope(initScope: ((String) -> Unit)?) =
+fun AppDialogFragment.initDynamicUiScope(initScope: ((String) -> Unit)?) =
     UiScopeDelegate(
         uniqueScopeName(this::class.java.simpleName),
         this,
