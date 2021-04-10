@@ -61,9 +61,9 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
 
-    // Moxy - lib for MVP architect (Used the custom moxy build with fixed bug with custom view)
-    implementation fileTree(include: ['moxy*.jar'], excludes: ['moxy-compiler*.jar'], dir: 'libs')
-    kapt files('libs/moxy-compiler-1.5.6.jar')
+    // Moxy
+    implementation "com.github.moxy-community:moxy:2.1.1"
+    kapt "com.github.moxy-community:moxy-compiler:2.1.1"
 
     // Cicerone (Navigation pattern)
     implementation 'com.github.terrakok:cicerone:6.6'

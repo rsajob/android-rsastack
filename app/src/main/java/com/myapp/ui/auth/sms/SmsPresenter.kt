@@ -1,11 +1,11 @@
 package com.myapp.ui.auth.sms
 
-import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
-import com.arellomobile.mvp.MvpPresenter
-import com.arellomobile.mvp.MvpView
-import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
-import com.arellomobile.mvp.viewstate.strategy.OneExecutionStateStrategy
+import moxy.InjectViewState
+import moxy.viewstate.strategy.StateStrategyType
+import moxy.MvpPresenter
+import moxy.MvpView
+import moxy.viewstate.strategy.AddToEndSingleStrategy
+import moxy.viewstate.strategy.OneExecutionStateStrategy
 import com.myapp.domain.interactors.AuthInteractor
 import kotlinx.coroutines.*
 import com.rsastack.system.navigation.FlowRouter

@@ -1,10 +1,10 @@
 package com.myapp.ui
 
 import android.os.Bundle
-import com.arellomobile.mvp.MvpPresenter
-import com.arellomobile.mvp.MvpView
-import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
+import moxy.MvpPresenter
+import moxy.MvpView
+import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
 import com.rsastack.system.navigation.setLaunchScreen
 import com.rsastack.system.toothpick.flowModule
 import com.rsastack.system.toothpick.initDynamicUiScope

@@ -2,9 +2,9 @@ package com.rsastack.system.ui.validation
 
 import android.os.Bundle
 import android.view.View
-import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
-import com.arellomobile.mvp.viewstate.strategy.OneExecutionStateStrategy
-import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
+import moxy.viewstate.strategy.AddToEndSingleStrategy
+import moxy.viewstate.strategy.OneExecutionStateStrategy
+import moxy.viewstate.strategy.StateStrategyType
 import com.rsastack.system.moxy.MvpAppCompatFragment
 
 /**

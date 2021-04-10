@@ -1,6 +1,6 @@
 package com.rsastack.system.singleactivity
 
-import com.arellomobile.mvp.MvpView
+import moxy.MvpView
 import com.rsastack.system.navigation.BackButtonListener
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.NavigatorHolder
