@@ -57,7 +57,4 @@ class SplashPresenter @Inject constructor(
         router.exit()
     }
 
-    fun pressNext() {
-        toNextScreen()
-    }
 }

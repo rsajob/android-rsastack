@@ -1,6 +1,10 @@
 package com.myapp.ui
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
 import moxy.MvpPresenter
 import moxy.MvpView
 import moxy.presenter.InjectPresenter
@@ -13,10 +17,14 @@ import toothpick.Toothpick
 import javax.inject.Inject
 
 import com.myapp.toothpick.DI
+import com.myapp.ui.mvvmtest.LondonViewModel
+import com.myapp.ui.mvvmtest.ScoreHolder
+import com.myapp.ui.mvvmtest.provideViewModel
 import com.rsastack.system.navigation.FlowRouter
 import com.rsastack.system.singleactivity.FlowFragment
+import com.rsastack.system.singleactivity.MvvmFlowFragment
 
-class TopFlowFragment: FlowFragment(), MvpView {
+class TopFlowFragment: MvvmFlowFragment() {
 
     private val scopeName:String by initDynamicUiScope { realScopeName ->
         DI.TOP_FLOW_SCOPE = realScopeName // Save the dynamic scope name
@@ -26,11 +34,12 @@ class TopFlowFragment: FlowFragment(), MvpView {
         )
     }
 
-    @InjectPresenter
-    lateinit var presenter: TopFlowPresenter
+    private lateinit var viewModel: TopFlowViewModel
 
-    @ProvidePresenter
-    fun providePresenter() = Toothpick.openScope(scopeName).getInstance(TopFlowPresenter::class.java)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
+        viewModel = provideViewModel(scopeName, TopFlowViewModel::class.java)
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Toothpick.inject(this, Toothpick.openScope(scopeName))
@@ -42,15 +51,15 @@ class TopFlowFragment: FlowFragment(), MvpView {
     }
 
     override fun onExit() {
-        presenter.onExit()
+        viewModel.onExit()
     }
 
 }
 
 
-class TopFlowPresenter @Inject constructor(
+class TopFlowViewModel @Inject constructor(
         private val router: FlowRouter
-): MvpPresenter<MvpView>()
+): ViewModel()
 {
     fun onExit() {
         router.finishFlow()
