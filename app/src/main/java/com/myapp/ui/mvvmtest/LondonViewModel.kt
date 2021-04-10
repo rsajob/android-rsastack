@@ -7,10 +7,16 @@ import com.myapp.ui.Screens
 import com.rsastack.system.navigation.FlowRouter
 import com.rsastack.system.utils.debug
 import toothpick.Toothpick
+import javax.inject.Inject
 
-class LondonViewModel(finalScore: Int): ViewModel() {
+data class ScoreHolder(val finalScore:Int)
+
+class LondonViewModel @Inject constructor (
+    private val router: FlowRouter,
+    private val scoreHolder: ScoreHolder
+): ViewModel() {
     // The current score
-    var score = finalScore
+    var score = scoreHolder.finalScore
 
     init {
         debug("LondonViewModel created!")
@@ -22,12 +28,10 @@ class LondonViewModel(finalScore: Int): ViewModel() {
     }
 
     fun pressNext() {
-        val router = Toothpick.openScope(DI.TOP_FLOW_SCOPE).getInstance(FlowRouter::class.java)
         router.navigateTo(Screens.AuthFlow())
     }
 
     fun pressBack() {
-        val router = Toothpick.openScope(DI.TOP_FLOW_SCOPE).getInstance(FlowRouter::class.java)
         router.exit()
     }
 }
