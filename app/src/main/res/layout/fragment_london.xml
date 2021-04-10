@@ -13,4 +13,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:text="0"
             />
+
+    <Button android:id="@+id/button_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/action_next"
+            app:layout_constraintTop_toBottomOf="@id/counter"
+            app:layout_constraintStart_toStartOf="@id/counter"
+            app:layout_constraintEnd_toEndOf="@id/counter"
+            />
+    <Button android:id="@+id/button_prev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Назад"
+            app:layout_constraintTop_toBottomOf="@id/button_next"
+            app:layout_constraintStart_toStartOf="@id/counter"
+            app:layout_constraintEnd_toEndOf="@id/counter"
+            />
 </androidx.constraintlayout.widget.ConstraintLayout>

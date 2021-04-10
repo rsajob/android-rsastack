@@ -42,6 +42,7 @@ class SplashFragment : BaseFragment() , SplashView, BackButtonListener
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.buttonNext.setOnClickListener { presenter.pressNext() }
     }
 
     override fun showProgress() {

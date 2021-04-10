@@ -30,6 +30,8 @@ class LondonFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.counter.text = viewModel.score.toString()
+        binding.buttonNext.setOnClickListener { viewModel.pressNext() }
+        binding.buttonPrev.setOnClickListener { viewModel.pressBack() }
     }
 
     override fun onDestroyView() {
@@ -37,7 +39,6 @@ class LondonFragment : Fragment() {
         _binding = null
     }
     // =========================================
-
 
 
 }

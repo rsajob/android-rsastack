@@ -40,7 +40,7 @@ class SplashPresenter @Inject constructor(
 
     private fun toNextScreen() {
         if (!authInteractor.isLoggedIn())
-            router.newRootScreen(Screens.AuthFlow())
+            router.navigateTo(Screens.London())
         else
             router.newRootScreen(Screens.MainTabs())
     }
@@ -55,5 +55,9 @@ class SplashPresenter @Inject constructor(
 
     fun onBack() {
         router.exit()
+    }
+
+    fun pressNext() {
+        toNextScreen()
     }
 }

@@ -38,7 +38,7 @@ class TopFlowFragment: FlowFragment(), MvpView {
         super.onCreate(savedInstanceState)
 
         if (childFragmentManager.fragments.isEmpty())
-            navigator.setLaunchScreen(Screens.London())
+            navigator.setLaunchScreen(Screens.Splash())
     }
 
     override fun onExit() {
