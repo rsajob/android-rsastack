@@ -3,7 +3,7 @@ package com.rsastack.system.moxy;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatDialogFragment;
-import com.arellomobile.mvp.MvpDelegate;
+import moxy.MvpDelegate;
 
 /**
  * Date: 25-Fed-18

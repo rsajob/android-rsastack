@@ -3,7 +3,7 @@ package com.rsastack.system.moxy;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import com.arellomobile.mvp.MvpDelegate;
+import moxy.MvpDelegate;
 
 /**
  * Date: 25-July-18

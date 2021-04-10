@@ -1,7 +1,7 @@
 package com.rsastack.system.moxy
 
 import android.os.Bundle
-import com.arellomobile.mvp.MvpDelegate
+import moxy.MvpDelegate
 
 class MvpDelegateObservable<Delegated>(delegated:Delegated) : MvpDelegate<Delegated>(delegated)
 {

@@ -1,10 +1,10 @@
 package com.myapp.ui.cards
 
-import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
-import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
-import com.arellomobile.mvp.MvpPresenter
-import com.arellomobile.mvp.MvpView
+import moxy.InjectViewState
+import moxy.viewstate.strategy.AddToEndSingleStrategy
+import moxy.viewstate.strategy.StateStrategyType
+import moxy.MvpPresenter
+import moxy.MvpView
 import com.rsastack.system.navigation.FlowRouter
 import javax.inject.Inject
 

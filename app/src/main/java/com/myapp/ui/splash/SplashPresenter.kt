@@ -1,10 +1,10 @@
 package com.myapp.ui.splash
 
-import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
-import com.arellomobile.mvp.MvpView
-import com.arellomobile.mvp.viewstate.strategy.SingleStateStrategy
-import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
+import moxy.InjectViewState
+import moxy.MvpPresenter
+import moxy.MvpView
+import moxy.viewstate.strategy.SingleStateStrategy
+import moxy.viewstate.strategy.StateStrategyType
 import com.myapp.domain.interactors.AuthInteractor
 import com.rsastack.system.navigation.FlowRouter
 import com.myapp.ui.Screens

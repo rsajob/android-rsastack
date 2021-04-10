@@ -1,10 +1,10 @@
 package com.myapp.ui
 
 import android.os.Bundle
-import com.arellomobile.mvp.MvpPresenter
-import com.arellomobile.mvp.MvpView
-import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
+import moxy.MvpPresenter
+import moxy.MvpView
+import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
 import com.myapp.toothpick.DI
 import com.rsastack.system.singleactivity.BaseSingleAppActivity
 import com.github.terrakok.cicerone.Router

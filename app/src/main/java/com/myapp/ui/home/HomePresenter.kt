@@ -1,10 +1,10 @@
 package com.myapp.ui.home
 
-import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
-import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
-import com.arellomobile.mvp.MvpPresenter
-import com.arellomobile.mvp.MvpView
+import moxy.InjectViewState
+import moxy.viewstate.strategy.AddToEndSingleStrategy
+import moxy.viewstate.strategy.StateStrategyType
+import moxy.MvpPresenter
+import moxy.MvpView
 import com.myapp.domain.interactors.AuthInteractor
 import com.rsastack.system.navigation.FlowRouter
 import com.myapp.ui.Screens
