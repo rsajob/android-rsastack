@@ -1,38 +1,37 @@
 package com.myapp.ui.splash
 
-import moxy.InjectViewState
-import moxy.MvpPresenter
-import moxy.MvpView
-import moxy.viewstate.strategy.SingleStateStrategy
-import moxy.viewstate.strategy.StateStrategyType
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.myapp.domain.interactors.AuthInteractor
-import com.rsastack.system.navigation.FlowRouter
 import com.myapp.ui.Screens
+import com.rsastack.system.navigation.FlowRouter
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@StateStrategyType(SingleStateStrategy::class)
-interface SplashView : MvpView {
-    fun showProgress()
-    fun showError(msg:String)
+sealed class State{
+    object Progress : State()
+    class Error(val message:String): State()
 }
 
-@InjectViewState
-class SplashPresenter @Inject constructor(
+class SplashViewModel @Inject constructor(
     val router: FlowRouter,
     private val authInteractor: AuthInteractor
-) : MvpPresenter<SplashView>() {
+): ViewModel() {
 
-    override fun onFirstViewAttach() {
+    private val _state = MutableStateFlow<State>(State.Progress)
+    val state: StateFlow<State> = _state
+
+    init {
         start()
     }
 
     private fun start() {
-        GlobalScope.launch(Dispatchers.Main) {
-            viewState.showProgress()
+        viewModelScope.launch(Dispatchers.Main) {
+            _state.tryEmit(State.Progress)
             delay(1000)
             toNextScreen()
         }
@@ -47,10 +46,6 @@ class SplashPresenter @Inject constructor(
 
     fun onRetry(){
         start()
-    }
-
-    fun doNext() {
-        router.newRootScreen(Screens.AuthFlow())
     }
 
     fun onBack() {
