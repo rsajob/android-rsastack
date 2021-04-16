@@ -19,14 +19,15 @@ open class AppTabScreen(@IdRes val navigationIdRes: Int,
                         fragmentCreator: Creator<FragmentFactory, Fragment>
 ) : FragmentScreen (key, fragmentCreator)
 
-object Screens {
-    fun TopFlow() = FragmentScreen { TopFlowFragment() }
-    fun Splash() = FragmentScreen { SplashFragment() }
-    fun MainTabs() = FragmentScreen { MainTabsFragment() }
-    fun AuthFlow() = FragmentScreen { AuthFlowFragment() }
-    fun AuthPhone() = FragmentScreen { PhoneFragment() }
-    fun AuthSms() = FragmentScreen { SmsFragment() }
-    fun TabHome() = AppTabScreen(R.id.navigation_home, "home") { HomeFragment() }
-    fun TabContacts() = AppTabScreen(R.id.navigation_cards, "contacts") { CardsFragment() }
+open class BaseFragmentScreen(fragmentCreator: Creator<FragmentFactory, Fragment>) : FragmentScreen(null, fragmentCreator)
 
+object Screens {
+    class TopFlow : BaseFragmentScreen( { TopFlowFragment() })
+    class Splash : BaseFragmentScreen( { SplashFragment() } )
+    class MainTabs : BaseFragmentScreen( { MainTabsFragment() } )
+    class AuthFlow : BaseFragmentScreen( { AuthFlowFragment() } )
+    class AuthPhone : BaseFragmentScreen( { PhoneFragment() } )
+    class AuthSms : BaseFragmentScreen( { SmsFragment() } )
+    class TabHome : AppTabScreen(R.id.navigation_home, "home", { HomeFragment() } )
+    class TabContacts : AppTabScreen(R.id.navigation_cards, "contacts", { CardsFragment() } )
 }
