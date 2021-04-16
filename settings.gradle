@@ -1,1 +1,1 @@
-include ':app', ':rsastack', ':uicore'
+include ':app', ':app-mvvm', ':rsastack', ':uicore'
