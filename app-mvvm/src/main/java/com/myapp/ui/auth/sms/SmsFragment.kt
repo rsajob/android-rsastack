@@ -1,21 +1,19 @@
 package com.myapp.ui.auth.sms
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-
-import moxy.presenter.InjectPresenter
-import moxy.presenter.ProvidePresenter
-import com.myapp.ui.common.BaseFragment
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.myapp.R
 import com.myapp.databinding.FragmentAuthSmsBinding
 import com.myapp.toothpick.DI
+import com.myapp.ui.common.BaseFragment
 import com.rsastack.system.utils.visible
-
+import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
 import toothpick.Toothpick
 
-class SmsFragment : BaseFragment(), SmsView {
+class SmsFragment : BaseFragment(R.layout.fragment_auth_sms), SmsView {
 
     @InjectPresenter
     lateinit var presenter: SmsPresenter
@@ -24,20 +22,7 @@ class SmsFragment : BaseFragment(), SmsView {
     fun providePresenter(): SmsPresenter = Toothpick.openScope(DI.AUTH_FLOW_SCOPE).getInstance(
         SmsPresenter::class.java)
 
-    // =========== View Binding ================
-    private var _binding: FragmentAuthSmsBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View {
-        _binding = FragmentAuthSmsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-    // =========================================
+    private val binding by viewBinding(FragmentAuthSmsBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

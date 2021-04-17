@@ -1,46 +1,35 @@
 package com.myapp.ui.maintabs
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import moxy.presenter.InjectPresenter
-import moxy.presenter.ProvidePresenter
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.myapp.R
 import com.myapp.databinding.FragmentMainBinding
-import com.rsastack.system.navigation.BackButtonListener
 import com.myapp.toothpick.DI
-import com.myapp.ui.Screens
 import com.myapp.ui.AppTabScreen
+import com.myapp.ui.Screens
 import com.myapp.ui.common.BaseFragment
+import com.rsastack.system.navigation.BackButtonListener
 import com.rsastack.system.utils.redispatchWindowInsetsToAllChildren
 import com.rsastack.system.utils.setupKeyboardModePan
+import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
 import toothpick.Toothpick
 
 private const val CURRENT_TAB = "current_tab"
 
-class MainTabsFragment : BaseFragment(), MainTabsView {
+class MainTabsFragment : BaseFragment(R.layout.fragment_main), MainTabsView {
 
     private val tabs = listOf(Screens.TabHome(), Screens.TabContacts())
 
-    // =========== View Binding ================
-    private var _binding: FragmentMainBinding? = null
-    private val binding get() = _binding!!
+    private val binding by viewBinding(FragmentMainBinding::bind)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setupKeyboardModePan()
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
-        return binding.root
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-    // =========================================
-
 
     private val currentTabFragment: Fragment?
         get() = childFragmentManager.fragments.firstOrNull { !it.isHidden } // Обязательно именно так!!! а не findFragmentById(R.id.tab_container)
