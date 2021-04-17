@@ -1,20 +1,18 @@
 package com.myapp.ui.splash
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import moxy.presenter.InjectPresenter
-import moxy.presenter.ProvidePresenter
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.snackbar.Snackbar
-import com.myapp.ui.common.BaseFragment
+import com.myapp.R
 import com.myapp.databinding.FragmentSplashBinding
 import com.myapp.toothpick.DI
+import com.myapp.ui.common.BaseFragment
 import com.rsastack.system.navigation.BackButtonListener
 import com.rsastack.system.utils.visible
+import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
 import toothpick.Toothpick
 
-class SplashFragment : BaseFragment() , SplashView, BackButtonListener
+class SplashFragment : BaseFragment(R.layout.fragment_splash) , SplashView, BackButtonListener
 {
     private var errorSnackbar: Snackbar? = null
 
@@ -25,24 +23,7 @@ class SplashFragment : BaseFragment() , SplashView, BackButtonListener
     fun providePresenter(): SplashPresenter = Toothpick.openScope(DI.TOP_FLOW_SCOPE).getInstance(
         SplashPresenter::class.java)
 
-    // =========== View Binding ================
-    private var _binding: FragmentSplashBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View {
-        _binding = FragmentSplashBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-    // =========================================
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
+    private val binding by viewBinding(FragmentSplashBinding::bind)
 
     override fun showProgress() {
         binding.progress.visible(true)
