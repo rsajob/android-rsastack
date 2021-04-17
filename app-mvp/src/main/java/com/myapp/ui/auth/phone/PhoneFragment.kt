@@ -1,22 +1,20 @@
 package com.myapp.ui.auth.phone
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-
-import moxy.presenter.InjectPresenter
-import moxy.presenter.ProvidePresenter
-import com.myapp.ui.common.BaseFragment
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.myapp.R
 import com.myapp.databinding.FragmentAuthPhoneBinding
 import com.myapp.toothpick.DI
+import com.myapp.ui.common.BaseFragment
 import com.rsastack.system.utils.hideKeyboard
 import com.rsastack.system.utils.visible
-
+import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
 import toothpick.Toothpick
 
-class PhoneFragment : BaseFragment(), PhoneView {
+class PhoneFragment : BaseFragment(R.layout.fragment_auth_phone), PhoneView {
 
     @InjectPresenter
     lateinit var presenter: PhonePresenter
@@ -25,20 +23,7 @@ class PhoneFragment : BaseFragment(), PhoneView {
     fun providePresenter(): PhonePresenter = Toothpick.openScope(DI.AUTH_FLOW_SCOPE).getInstance(
         PhonePresenter::class.java)
 
-    // =========== View Binding ================
-    private var _binding: FragmentAuthPhoneBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View {
-        _binding = FragmentAuthPhoneBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-    // =========================================
+    private val binding by viewBinding(FragmentAuthPhoneBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
