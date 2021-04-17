@@ -14,20 +14,25 @@ import com.myapp.ui.auth.sms.SmsFragment
 import com.myapp.ui.cards.CardsFragment
 import com.myapp.ui.home.HomeFragment
 
-open class AppTabScreen(@IdRes val navigationIdRes: Int,
-                        key: String? = null,
-                        fragmentCreator: Creator<FragmentFactory, Fragment>
-) : FragmentScreen (key, fragmentCreator)
+interface AppTabScreen : FragmentScreen {
+    val navigationIdRes: Int
+    companion object {
+        operator fun invoke(@IdRes navigationIdRes: Int, fragmentCreator: Creator<FragmentFactory, Fragment>) =
+            object : AppTabScreen {
+                override val navigationIdRes = navigationIdRes
+                override fun createFragment(factory: FragmentFactory): Fragment = fragmentCreator.create(factory)
+            }
+    }
+}
 
-open class BaseFragmentScreen(fragmentCreator: Creator<FragmentFactory, Fragment>) : FragmentScreen(null, fragmentCreator)
 
 object Screens {
-    class TopFlow : BaseFragmentScreen( { TopFlowFragment() })
-    class Splash : BaseFragmentScreen( { SplashFragment() } )
-    class MainTabs : BaseFragmentScreen( { MainTabsFragment() } )
-    class AuthFlow : BaseFragmentScreen( { AuthFlowFragment() } )
-    class AuthPhone : BaseFragmentScreen( { PhoneFragment() } )
-    class AuthSms : BaseFragmentScreen( { SmsFragment() } )
-    class TabHome : AppTabScreen(R.id.navigation_home, "home", { HomeFragment() } )
-    class TabContacts : AppTabScreen(R.id.navigation_cards, "contacts", { CardsFragment() } )
+    fun TopFlow() = FragmentScreen { TopFlowFragment() }
+    fun Splash() = FragmentScreen { SplashFragment() }
+    fun MainTabs() = FragmentScreen { MainTabsFragment() }
+    fun AuthFlow() = FragmentScreen { AuthFlowFragment() }
+    fun AuthPhone() = FragmentScreen { PhoneFragment() }
+    fun AuthSms() = FragmentScreen { SmsFragment() }
+    fun TabHome() = AppTabScreen(R.id.navigation_home) { HomeFragment() }
+    fun TabContacts() = AppTabScreen(R.id.navigation_cards) { CardsFragment() }
 }

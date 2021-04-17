@@ -137,7 +137,7 @@ dependencies {
     kapt "com.github.moxy-community:moxy-compiler:2.1.1"
 
     // Cicerone (Navigation pattern)
-    implementation 'com.github.terrakok:cicerone:6.6'
+    implementation 'com.github.terrakok:cicerone:7.0'
 
     // Toothpick
     implementation "com.github.stephanenicolas.toothpick:toothpick-runtime:3.1.0"

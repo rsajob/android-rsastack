@@ -23,7 +23,7 @@ class FlowRouter(val appRouter: Router) : Router() {
     {
         executeCommands(
                 BackTo(null),
-                Forward(screen, false)
+                Forward(screen)
         )
     }
 
@@ -31,7 +31,7 @@ class FlowRouter(val appRouter: Router) : Router() {
     {
         executeCommands(
             BackTo(backToScreen),
-            Forward(navToScreen, false)
+            Forward(navToScreen)
         )
     }
 
