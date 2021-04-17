@@ -5,7 +5,7 @@ import com.rsastack.system.base.AppDialogFragment
 import moxy.MvpDelegate
 import moxy.MvpDelegateHolder
 
-class MvpAppCompatDialogFragment : AppDialogFragment(), MvpDelegateHolder {
+open class MvpAppCompatDialogFragment : AppDialogFragment(), MvpDelegateHolder {
 
     private var flagIsStateSaved = false
     private var mvpDelegate: MvpDelegate<out MvpAppCompatDialogFragment>? = null
