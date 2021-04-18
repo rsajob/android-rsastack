@@ -21,6 +21,11 @@ import javax.inject.Inject
 
 class AuthFlowFragment: FlowFragment(), MvpView {
 
+    override val layoutRes = R.layout.fragment_auth_flow
+    override val containerId = R.id.content_container
+
+    private val binding by viewBinding(FragmentAuthFlowBinding::bind)
+
     private val scopeName:String by initDynamicUiScope { realScopeName ->
         DI.AUTH_FLOW_SCOPE = realScopeName // Save the dynamic scope name
         val scope = Toothpick.openScopes(DI.TOP_FLOW_SCOPE, DI.AUTH_FLOW_SCOPE)
@@ -46,6 +51,11 @@ class AuthFlowFragment: FlowFragment(), MvpView {
         if (childFragmentManager.fragments.isEmpty()) {
             navigator.setLaunchScreen(Screens.AuthPhone())
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.title.text = "Auth Flow"
     }
 
     override fun onExit() {
