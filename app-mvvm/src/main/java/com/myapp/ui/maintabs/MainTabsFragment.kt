@@ -8,12 +8,9 @@ import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.myapp.R
 import com.myapp.databinding.FragmentMainBinding
 import com.myapp.toothpick.DI
-import com.myapp.ui.AppTabScreen
-import com.myapp.ui.Screens
 import com.myapp.ui.common.BaseFragment
 import com.rsastack.system.navigation.BackButtonListener
 import com.rsastack.system.utils.redispatchWindowInsetsToAllChildren
-import com.rsastack.system.utils.setupKeyboardModePan
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import toothpick.Toothpick
@@ -22,14 +19,9 @@ private const val CURRENT_TAB = "current_tab"
 
 class MainTabsFragment : BaseFragment(R.layout.fragment_main), MainTabsView {
 
-    private val tabs = listOf(Screens.TabHome(), Screens.TabContacts())
+    private val tabs = listOf(Tabs.Home(), Tabs.Cards())
 
     private val binding by viewBinding(FragmentMainBinding::bind)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setupKeyboardModePan()
-    }
 
     private val currentTabFragment: Fragment?
         get() = childFragmentManager.fragments.firstOrNull { !it.isHidden } // Обязательно именно так!!! а не findFragmentById(R.id.tab_container)
@@ -64,7 +56,7 @@ class MainTabsFragment : BaseFragment(R.layout.fragment_main), MainTabsView {
     private fun initBottomNavigation() {
         // Default Tab
         if (currentTab == null)
-            currentTab = Screens.TabHome().screenKey
+            currentTab = Tabs.Home().screenKey
 
         currentTab?.let { selectTabByScreenKey(it) }
 
