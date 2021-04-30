@@ -8,7 +8,7 @@ import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.myapp.R
 import com.myapp.databinding.FragmentMainBinding
 import com.myapp.toothpick.DI
-import com.myapp.ui.common.BaseFragment
+import com.rsastack.system.moxy.MvpAppCompatFragment
 import com.rsastack.system.navigation.BackButtonListener
 import com.rsastack.system.utils.redispatchWindowInsetsToAllChildren
 import moxy.presenter.InjectPresenter
@@ -17,7 +17,7 @@ import toothpick.Toothpick
 
 private const val CURRENT_TAB = "current_tab"
 
-class MainTabsFragment : BaseFragment(R.layout.fragment_main), MainTabsView {
+class MainTabsFragment : MvpAppCompatFragment(R.layout.fragment_main), MainTabsView, BackButtonListener {
 
     private val tabs = listOf(Tabs.Home(), Tabs.Cards())
 
