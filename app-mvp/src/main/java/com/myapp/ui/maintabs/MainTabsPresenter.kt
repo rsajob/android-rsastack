@@ -6,7 +6,6 @@ import moxy.viewstate.strategy.StateStrategyType
 import moxy.MvpPresenter
 import moxy.MvpView
 import com.rsastack.system.navigation.FlowRouter
-import com.myapp.ui.Screens
 import javax.inject.Inject
 
 

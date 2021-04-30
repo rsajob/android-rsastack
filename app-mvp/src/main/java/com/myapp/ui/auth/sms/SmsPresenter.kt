@@ -7,10 +7,6 @@ import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.OneExecutionStateStrategy
 import com.myapp.domain.interactors.AuthInteractor
-import kotlinx.coroutines.*
-import com.rsastack.system.navigation.FlowRouter
-import com.rsastack.system.utils.debug
-import com.rsastack.system.utils.warn
 import com.myapp.ui.Screens
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
