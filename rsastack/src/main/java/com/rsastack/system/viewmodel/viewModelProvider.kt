@@ -1,4 +1,4 @@
-package com.myapp.ui.mvvmtest
+package com.rsastack.system.viewmodel
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
@@ -7,6 +7,7 @@ import com.rsastack.system.toothpick.toothpickCreateInstance
 import toothpick.Toothpick
 import toothpick.config.Module
 
+@Suppress("UNCHECKED_CAST")
 fun provideFactory(scopeName:String, cls:Class<*>):ViewModelProvider.Factory = object : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(cls))
@@ -16,6 +17,7 @@ fun provideFactory(scopeName:String, cls:Class<*>):ViewModelProvider.Factory = o
     }
 }
 
+@Suppress("UNCHECKED_CAST")
 fun provideFactory(scopeName:String, cls:Class<*>, bindings: Module.() -> Unit = {}):ViewModelProvider.Factory = object : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(cls))

@@ -1,7 +1,7 @@
 package com.myapp.domain.interactors
 
 import android.content.Context
-import com.myapp.utils.PrefDelegate
+import com.rsastack.system.sharedprefs.PrefDelegate
 import javax.inject.Inject
 
 open class AuthDataImpl(

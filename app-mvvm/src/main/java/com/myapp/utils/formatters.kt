@@ -34,6 +34,7 @@ fun Float.formatPrice(currencyCode: String, defaultCurrencyCode: String = "RUB")
     }
 }
 
+@Suppress("DEPRECATION")
 fun String.formatPhone():String
 {
     var phone = this

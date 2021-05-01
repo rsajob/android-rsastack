@@ -1,7 +1,7 @@
-package com.myapp.utils
+package com.rsastack.system.sharedprefs
 
 import android.content.Context
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import com.rsastack.system.utils.err
 import java.io.IOException
 import kotlin.reflect.KProperty
@@ -16,7 +16,10 @@ class PrefDelegate<T>(
 )
 {
     private fun getSharedPreferences()
-            = if (prefsName != null) context.getSharedPreferences(prefsName, Context.MODE_PRIVATE) else PreferenceManager.getDefaultSharedPreferences(context)
+            = if (prefsName != null)
+                context.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+            else
+                PreferenceManager.getDefaultSharedPreferences(context)
 
     data class CacheValue<T>(var value:T)
 
@@ -57,6 +60,7 @@ class PrefDelegate<T>(
         }
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun readData(key:String):T{
 
         if (cachedValue != null)
@@ -75,18 +79,14 @@ class PrefDelegate<T>(
 
                     val value = prefs.getString(key, null)
 
-                    if (fromString != null && value != null) {
-//                        logger.w("read as Object")
-                        return fromString?.invoke(value) ?: default
+                    return if (fromString != null && value != null) {
+                        fromString?.invoke(value) ?: default
+                    } else
+                    if (default is String?) {
+                        prefs.getString(key, default) as T
+                    }else {
+                        default
                     }
-                    else
-                        if (default is String?) {
-//                        logger.w("read $key as String?")
-                            return prefs.getString(key, default) as T
-                        }else {
-//                        logger.w("read $key as default")
-                            return default
-                        }
 
                 }
             }
@@ -95,11 +95,9 @@ class PrefDelegate<T>(
         }
     }
 
-    operator fun getValue(thisRef: Any?, property: KProperty<*>): T
-    {
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
         val key = propName ?: property.name
-        val value = readData(key)
-        return value
+        return readData(key)
     }
 
 

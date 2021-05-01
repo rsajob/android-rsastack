@@ -90,10 +90,7 @@ dependencies {
     implementation(project(":rsastack"))
     implementation(project(":uicore"))
 
-    // Kotlin
-    val kotlinVersion = rootProject.extra.get("kotlin_version")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+    // Kotlin coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-rx2:1.4.3")
@@ -105,6 +102,7 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.2.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta01")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
+    implementation("androidx.preference:preference-ktx:1.1.1")
 
     // Android Arch
     implementation("androidx.lifecycle:lifecycle-common-java8:2.3.1")

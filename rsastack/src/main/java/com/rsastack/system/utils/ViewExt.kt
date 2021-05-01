@@ -2,6 +2,7 @@ package com.rsastack.system.utils
 
 import android.app.Activity
 import android.content.Context
+import android.os.Build
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,8 +20,12 @@ fun Fragment.hideKeyboard(v: View? = null) {
     activity?.hideKeyboard(v)
 }
 
+@Suppress("DEPRECATION")
 fun Fragment.setupKeyboardModeResize() {
-    activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        activity?.window?.setDecorFitsSystemWindows(false)
+    }else
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 }
 
 fun Fragment.setupKeyboardModePan() {

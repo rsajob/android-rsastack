@@ -26,33 +26,11 @@ android {
         useIR = true
     }
 
-    buildTypes {
-        getByName("debug") {
-            isDebuggable = true
-            isMinifyEnabled = false
-        }
-
-        create("staging") {
-            isDebuggable = true
-            isMinifyEnabled = false
-        }
-
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
-
-    }
 }
 
 dependencies {
-    val kotlinVersion = rootProject.extra.get("kotlin_version")
 
-    // Kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
-
-    // Support
+    // AndroidX
     implementation("androidx.core:core-ktx:1.3.2")
     implementation("androidx.activity:activity-ktx:1.2.2")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
@@ -60,6 +38,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta01")
     implementation("com.google.android.material:material:1.3.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
+    implementation("androidx.preference:preference-ktx:1.1.1")
 
     // RxJava
     implementation("io.reactivex.rxjava2:rxandroid:2.1.1")

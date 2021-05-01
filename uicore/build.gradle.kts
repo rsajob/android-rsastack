@@ -5,11 +5,6 @@ plugins {
 android {
     compileSdkVersion(30)
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
     defaultConfig {
         minSdkVersion(21)
         targetSdkVersion(30)
@@ -17,19 +12,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        getByName("debug") { }
-
-        create("staging") {
-        }
-
-        getByName("release") {
-            isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
-
     }
 
 }

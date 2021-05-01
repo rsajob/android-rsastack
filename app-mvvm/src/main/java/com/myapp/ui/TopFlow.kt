@@ -5,10 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
-import moxy.MvpPresenter
-import moxy.MvpView
-import moxy.presenter.InjectPresenter
-import moxy.presenter.ProvidePresenter
 import com.rsastack.system.navigation.setLaunchScreen
 import com.rsastack.system.toothpick.flowModule
 import com.rsastack.system.toothpick.initDynamicUiScope
@@ -17,11 +13,8 @@ import toothpick.Toothpick
 import javax.inject.Inject
 
 import com.myapp.toothpick.DI
-import com.myapp.ui.mvvmtest.LondonViewModel
-import com.myapp.ui.mvvmtest.ScoreHolder
-import com.myapp.ui.mvvmtest.provideViewModel
+import com.rsastack.system.viewmodel.provideViewModel
 import com.rsastack.system.navigation.FlowRouter
-import com.rsastack.system.singleactivity.FlowFragment
 import com.rsastack.system.singleactivity.MvvmFlowFragment
 
 class TopFlowFragment: MvvmFlowFragment() {

@@ -1,14 +1,11 @@
 package com
 
 import com.android.build.api.dsl.SigningConfig
-import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
-import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.internal.file.impl.DefaultFileMetadata.file
-import org.gradle.kotlin.dsl.get
 import java.io.File
 import java.io.FileInputStream
+import java.lang.IllegalArgumentException
 import java.util.*
 
 class SignPlugin : Plugin<Project> {
@@ -27,9 +24,13 @@ fun openProperties(file: File): Properties
 
 fun SigningConfig.fromPath(project:Project, path:String)
 {
-    val path = File(project.buildDir.absolutePath+"/../"+path).absolutePath
-    val prop = openProperties(File("$path/data.properties"))
-    storeFile = File("$path/keystore.jks")
+    val signPath = File("${project.projectDir}/$path").canonicalPath
+    val filePath = File(signPath)
+    if (!filePath.exists())
+        throw IllegalArgumentException("Bad sign path $signPath")
+    
+    val prop = openProperties(File("${filePath.absolutePath}/data.properties"))
+    storeFile = File("${filePath.absolutePath}/keystore.jks")
     storePassword = prop.getProperty("keystorePassword")
     keyAlias = prop.getProperty("keyAlias")
     keyPassword = prop.getProperty("keyPassword")

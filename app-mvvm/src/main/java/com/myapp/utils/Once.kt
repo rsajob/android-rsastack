@@ -10,6 +10,7 @@ class Once
     private var result:Any? = null
 
     // Выполняет блок кода один раз и синхронно (второй и последующие потоки получат тот же результат)
+    @Suppress("UNCHECKED_CAST")
     suspend fun <T> run(block: suspend ()->T):T
     {
         error = null
