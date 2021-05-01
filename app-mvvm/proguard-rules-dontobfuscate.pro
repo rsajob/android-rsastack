@@ -120,12 +120,11 @@
 -keepnames class com.powermobile.entity.**
 
 # Moxy
--dontwarn com.arellomobile.**
+-dontwarn moxy.**
 
 # Disable all Notes
 #-dontnote **
 
--keep class com.arellomobile.mvp.**
 -dontwarn com.powermobile.ui.**
 
 -keepattributes *Annotation*
@@ -147,13 +146,31 @@
 -keep class kotlin.** { *; }
 
 ####################################################3
-# For Toothpick 2.x (https://github.com/stephanenicolas/toothpick/blob/master/smoothie/proguard-rules.txt)
--adaptclassstrings **
--keepnames class com.myapp.**
--keepnames class com.rsastack.**
+# For Toothpick 3.x
+-dontwarn javax.inject.**
+-dontwarn javax.annotation.**
+-keep class javax.inject.**
+-keep class javax.annotation.**
+-keepnames @javax.inject.Qualifier class *
+
 -keep class **__Factory { *; }
 -keep class **__MemberInjector { *; }
+-keepclasseswithmembers class *{ @javax.inject.Inject <init>(...); }
+-keepclasseswithmembers class *{ @javax.inject.Inject <init>(); }
+-keepclasseswithmembers class *{ @javax.inject.Inject <fields>; }
+-keepclasseswithmembers class *{ public <init>(...); }
+-keepclassmembers class * {
+	@javax.inject.Inject <init>(...);
+	@javax.inject.Inject <init>();
+	@javax.inject.Inject <fields>;
+	public <init>(...);
+}
+-keepnames @toothpick.InjectConstructor class *
 
+-keepclasseswithmembernames class * { toothpick.ktp.delegate.* *; }
+-keepclassmembers class * {
+    toothpick.ktp.delegate.* *;
+}
 ####################################################3
 # For staging
 -dontobfuscate

@@ -117,17 +117,6 @@
 ## A resource is loaded with a relative path so the package of this class must be preserved.
 -keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 
--keepnames class com.powermobile.entity.**
-
-# Moxy
--dontwarn com.arellomobile.**
-
-# Disable all Notes
-#-dontnote **
-
--keep class com.arellomobile.mvp.**
--dontwarn com.powermobile.ui.**
-
 -keepattributes *Annotation*
 -keepattributes Signature
 -keepattributes EnclosingMethod
@@ -147,9 +136,28 @@
 -keep class kotlin.** { *; }
 
 ####################################################3
-# For Toothpick 2.x (https://github.com/stephanenicolas/toothpick/blob/master/smoothie/proguard-rules.txt)
--adaptclassstrings **
--keepnames class com.myapp.**
--keepnames class com.rsastack.**
+# For Toothpick 3.x
+-dontwarn javax.inject.**
+-dontwarn javax.annotation.**
+-keep class javax.inject.**
+-keep class javax.annotation.**
+-keepnames @javax.inject.Qualifier class *
+
 -keep class **__Factory { *; }
 -keep class **__MemberInjector { *; }
+-keepclasseswithmembers class *{ @javax.inject.Inject <init>(...); }
+-keepclasseswithmembers class *{ @javax.inject.Inject <init>(); }
+-keepclasseswithmembers class *{ @javax.inject.Inject <fields>; }
+-keepclasseswithmembers class *{ public <init>(...); }
+-keepclassmembers class * {
+	@javax.inject.Inject <init>(...);
+	@javax.inject.Inject <init>();
+	@javax.inject.Inject <fields>;
+	public <init>(...);
+}
+-keepnames @toothpick.InjectConstructor class *
+
+-keepclasseswithmembernames class * { toothpick.ktp.delegate.* *; }
+-keepclassmembers class * {
+    toothpick.ktp.delegate.* *;
+}
