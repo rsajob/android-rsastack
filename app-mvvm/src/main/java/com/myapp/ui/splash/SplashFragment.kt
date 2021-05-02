@@ -17,6 +17,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash), BackButtonListener
 {
     private var errorSnackbar: Snackbar? = null
 
+    private lateinit var viewModel:SplashViewModel
     private val binding by viewBinding(FragmentSplashBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +33,6 @@ class SplashFragment : Fragment(R.layout.fragment_splash), BackButtonListener
         is State.Error -> showError(state.message)
     }
 
-    private lateinit var viewModel:SplashViewModel
 
     private fun showProgress() {
         binding.progress.visible(true)

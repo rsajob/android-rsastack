@@ -1,5 +1,6 @@
 package com.rsastack.system.viewmodel
 
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -34,6 +35,18 @@ fun <T : ViewModel> Fragment.provideViewModel(scopeName:String, cls:Class<T>):T
 }
 
 fun <T : ViewModel> Fragment.provideViewModel(scopeName:String, cls:Class<T>, bindings: Module.() -> Unit = {}):T
+{
+    val viewModelFactory = provideFactory(scopeName, cls, bindings)
+    return ViewModelProvider(this, viewModelFactory).get(cls)
+}
+
+fun <T : ViewModel> AppCompatActivity.provideViewModel(scopeName:String, cls:Class<T>):T
+{
+    val viewModelFactory = provideFactory(scopeName, cls)
+    return ViewModelProvider(this, viewModelFactory).get(cls)
+}
+
+fun <T : ViewModel> AppCompatActivity.provideViewModel(scopeName:String, cls:Class<T>, bindings: Module.() -> Unit = {}):T
 {
     val viewModelFactory = provideFactory(scopeName, cls, bindings)
     return ViewModelProvider(this, viewModelFactory).get(cls)
