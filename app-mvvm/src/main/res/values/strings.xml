@@ -10,6 +10,7 @@
     <string name="action_enter_number">Введите номер телефона</string>
     <string name="action_enter_sms">Введите SMS код</string>
     <string name="action_next">Далее</string>
+    <string name="action_back">Назад</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>

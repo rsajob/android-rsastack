@@ -1,5 +1,6 @@
 package com.myapp.ui.auth.phone
 
+import androidx.lifecycle.ViewModel
 import moxy.InjectViewState
 import moxy.viewstate.strategy.StateStrategyType
 import moxy.MvpPresenter
@@ -12,23 +13,26 @@ import com.rsastack.system.navigation.FlowRouter
 import com.rsastack.system.utils.debug
 import com.rsastack.system.utils.warn
 import com.myapp.ui.Screens
+import com.myapp.ui.splash.State
 import io.reactivex.disposables.Disposable
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 
-@StateStrategyType(AddToEndSingleStrategy::class)
-interface PhoneView : MvpView {
-    @StateStrategyType(OneExecutionStateStrategy::class)
-    fun showMessage(msg:String)
-
-    fun showProgress(shown:Boolean)
-}
-
-@InjectViewState
-class PhonePresenter @Inject constructor(
+class PhoneVM @Inject constructor(
     private val router: FlowRouter,
     private val authInteractor:AuthInteractor
-) : MvpPresenter<PhoneView>() {
+) : ViewModel() {
+
+    sealed class State{
+        object Idle : State()
+        object Progress : State()
+        class Error(val message:String): State()
+    }
+
+    private val _state = MutableStateFlow<State>(State.Idle)
+    val state: StateFlow<State> = _state
 
     private var disposable:Disposable? = null
 
@@ -40,29 +44,23 @@ class PhonePresenter @Inject constructor(
     {
         disposable?.dispose()
 
-        viewState.showProgress(true)
+        _state.tryEmit(State.Progress)
         val phoneFix = phone.replace("+7", "")
 
         disposable = authInteractor.requestSmsCode(phoneFix)
-            .doFinally { viewState.showProgress(false) }
             .subscribe(
                 {
                     router.navigateTo(Screens.AuthSms())
                 },
                 {
                     val msg = it.message ?: it.javaClass.simpleName
-                    viewState.showMessage(msg)
+                    _state.tryEmit(State.Error(msg))
                 }
             )
     }
 
-    fun pressCancel()
-    {
-        disposable?.dispose()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onCleared() {
+        super.onCleared()
         disposable?.dispose()
     }
 

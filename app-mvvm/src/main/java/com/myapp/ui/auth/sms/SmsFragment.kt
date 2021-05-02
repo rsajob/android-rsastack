@@ -3,53 +3,62 @@ package com.myapp.ui.auth.sms
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.myapp.R
 import com.myapp.databinding.FragmentAuthSmsBinding
 import com.myapp.toothpick.DI
-import com.myapp.ui.common.BaseFragment
+import com.rsastack.system.navigation.BackButtonListener
 import com.rsastack.system.utils.visible
-import moxy.presenter.InjectPresenter
-import moxy.presenter.ProvidePresenter
-import toothpick.Toothpick
+import com.rsastack.system.viewmodel.provideViewModel
+import kotlinx.coroutines.flow.collect
 
-class SmsFragment : BaseFragment(R.layout.fragment_auth_sms), SmsView {
+class SmsFragment : Fragment(R.layout.fragment_auth_sms), BackButtonListener {
 
-    @InjectPresenter
-    lateinit var presenter: SmsPresenter
-
-    @ProvidePresenter
-    fun providePresenter(): SmsPresenter = Toothpick.openScope(DI.AUTH_FLOW_SCOPE).getInstance(
-        SmsPresenter::class.java)
-
+    lateinit var viewModel: SmsVM
     private val binding by viewBinding(FragmentAuthSmsBinding::bind)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = provideViewModel(DI.AUTH_FLOW_SCOPE, SmsVM::class.java)
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initControls()
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.state.collect { renderState(it) }
+        }
     }
 
     private fun initControls() {
         binding.btnNext.setOnClickListener {
             val smsString = binding.phoneOrSms.text.toString()
-            presenter.pressNext(smsString)
+            viewModel.pressNext(smsString)
         }
         binding.btnCancel.setOnClickListener {
-            presenter.pressCancel()
+            viewModel.pressCancel()
         }
     }
 
-    override fun showProgress(shown:Boolean){
-        binding.loginProgress.visible(shown)
-    }
-
-    override fun showMessage(msg: String) {
-        binding.loginProgress.visible(false)
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+    private fun renderState(state: SmsVM.State) = when (state) {
+        is SmsVM.State.Idle -> {
+            binding.loginProgress.visible(false)
+        }
+        is SmsVM.State.Progress -> {
+            binding.loginProgress.visible(true)
+        }
+        is SmsVM.State.Error -> {
+            binding.loginProgress.visible(false)
+            Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onBackPressed() {
-        presenter.onBackPressed()
+        viewModel.onBackPressed()
     }
 
 }
