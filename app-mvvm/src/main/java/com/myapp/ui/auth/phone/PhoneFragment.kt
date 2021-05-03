@@ -12,7 +12,7 @@ import com.myapp.toothpick.DI
 import com.rsastack.system.navigation.BackButtonListener
 import com.rsastack.system.utils.hideKeyboard
 import com.rsastack.system.utils.visible
-import com.rsastack.system.viewmodel.provideViewModel
+import com.rsastack.system.mvvm.provideViewModel
 import kotlinx.coroutines.flow.collect
 
 class PhoneFragment : Fragment(R.layout.fragment_auth_phone), BackButtonListener {

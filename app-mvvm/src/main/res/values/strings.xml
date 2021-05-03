@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Rsa Stack</string>
+    <string name="app_name" translatable="false">Mvvm Rsa Stack</string>
 
     <string name="title_home">Home</string>
     <string name="title_card">Card</string>

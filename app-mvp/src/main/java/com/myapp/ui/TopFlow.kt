@@ -14,9 +14,9 @@ import javax.inject.Inject
 
 import com.myapp.toothpick.DI
 import com.rsastack.system.navigation.FlowRouter
-import com.rsastack.system.singleactivity.FlowFragment
+import com.rsastack.system.mvp.MvpFlowFragment
 
-class TopFlowFragment: FlowFragment(), MvpView {
+class TopFlowFragment: MvpFlowFragment(), MvpView {
 
     private val scopeName:String by initDynamicUiScope { realScopeName ->
         DI.TOP_FLOW_SCOPE = realScopeName // Save the dynamic scope name

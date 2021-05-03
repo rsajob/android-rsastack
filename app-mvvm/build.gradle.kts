@@ -87,7 +87,9 @@ android {
 
 dependencies {
 
-    implementation(project(":rsastack"))
+    implementation(project(":rsastack:core"))
+    implementation(project(":rsastack:mvp"))
+    implementation(project(":rsastack:mvvm"))
     implementation(project(":uicore"))
 
     // Kotlin coroutines
@@ -96,8 +98,10 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-rx2:1.4.3")
 
     // AndroidX
-    implementation("androidx.core:core-ktx:1.3.2")
+    implementation("androidx.core:core-ktx:1.5.0-rc01")
+    implementation("androidx.appcompat:appcompat:1.3.0-rc01")
     implementation("androidx.activity:activity-ktx:1.2.2")
+
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.recyclerview:recyclerview:1.2.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta01")

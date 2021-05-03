@@ -13,9 +13,9 @@ import toothpick.Toothpick
 import javax.inject.Inject
 
 import com.myapp.toothpick.DI
-import com.rsastack.system.viewmodel.provideViewModel
+import com.rsastack.system.mvvm.provideViewModel
 import com.rsastack.system.navigation.FlowRouter
-import com.rsastack.system.singleactivity.MvvmFlowFragment
+import com.rsastack.system.mvvm.MvvmFlowFragment
 
 class TopFlowFragment: MvvmFlowFragment() {
 

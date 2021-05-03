@@ -2,18 +2,15 @@ package com.myapp.ui
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModel
-import moxy.MvpPresenter
 import moxy.MvpView
-import moxy.presenter.InjectPresenter
-import moxy.presenter.ProvidePresenter
 import com.myapp.toothpick.DI
-import com.rsastack.system.singleactivity.BaseSingleAppActivity
 import com.github.terrakok.cicerone.Router
-import com.rsastack.system.viewmodel.provideViewModel
+import com.rsastack.system.mvvm.MvvmSingleAppActivity
+import com.rsastack.system.mvvm.provideViewModel
 import toothpick.Toothpick
 import javax.inject.Inject
 
-class AppActivity: BaseSingleAppActivity(), MvpView
+class AppActivity: MvvmSingleAppActivity(), MvpView
 {
     private lateinit var viewModel:AppViewModel
 

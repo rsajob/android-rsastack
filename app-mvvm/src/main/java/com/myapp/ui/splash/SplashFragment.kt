@@ -8,7 +8,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.myapp.R
 import com.myapp.databinding.FragmentSplashBinding
 import com.myapp.toothpick.DI
-import com.rsastack.system.viewmodel.provideViewModel
+import com.rsastack.system.mvvm.provideViewModel
 import com.rsastack.system.navigation.BackButtonListener
 import com.rsastack.system.utils.visible
 import kotlinx.coroutines.flow.collect

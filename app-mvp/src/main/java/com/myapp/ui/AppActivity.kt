@@ -6,12 +6,12 @@ import moxy.MvpView
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import com.myapp.toothpick.DI
-import com.rsastack.system.singleactivity.BaseSingleAppActivity
+import com.rsastack.system.mvp.MvpSingleAppActivity
 import com.github.terrakok.cicerone.Router
 import toothpick.Toothpick
 import javax.inject.Inject
 
-class AppActivity: BaseSingleAppActivity(), MvpView
+class AppActivity: MvpSingleAppActivity(), MvpView
 {
     @InjectPresenter
     lateinit var presenter: AppPresenter

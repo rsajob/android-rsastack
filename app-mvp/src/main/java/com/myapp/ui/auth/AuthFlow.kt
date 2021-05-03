@@ -13,7 +13,7 @@ import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import com.rsastack.system.navigation.FlowRouter
 import com.rsastack.system.navigation.setLaunchScreen
-import com.rsastack.system.singleactivity.FlowFragment
+import com.rsastack.system.mvp.MvpFlowFragment
 import com.rsastack.system.toothpick.flowModule
 import com.rsastack.system.toothpick.initDynamicUiScope
 import com.myapp.toothpick.DI
@@ -22,7 +22,7 @@ import com.rsastack.system.utils.setupKeyboardModeResize
 import toothpick.Toothpick
 import javax.inject.Inject
 
-class AuthFlowFragment: FlowFragment(), MvpView {
+class AuthFlowFragment: MvpFlowFragment(), MvpView {
 
     override val layoutRes = R.layout.fragment_auth_flow
     override val containerId = R.id.content_container

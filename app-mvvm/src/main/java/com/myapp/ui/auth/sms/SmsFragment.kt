@@ -11,7 +11,7 @@ import com.myapp.databinding.FragmentAuthSmsBinding
 import com.myapp.toothpick.DI
 import com.rsastack.system.navigation.BackButtonListener
 import com.rsastack.system.utils.visible
-import com.rsastack.system.viewmodel.provideViewModel
+import com.rsastack.system.mvvm.provideViewModel
 import kotlinx.coroutines.flow.collect
 
 class SmsFragment : Fragment(R.layout.fragment_auth_sms), BackButtonListener {

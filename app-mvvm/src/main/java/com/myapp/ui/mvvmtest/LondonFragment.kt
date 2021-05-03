@@ -7,7 +7,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.myapp.R
 import com.myapp.databinding.FragmentLondonBinding
 import com.myapp.toothpick.DI
-import com.rsastack.system.viewmodel.provideViewModel
+import com.rsastack.system.mvvm.provideViewModel
 
 class LondonFragment : Fragment(R.layout.fragment_london) {
 
