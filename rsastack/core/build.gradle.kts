@@ -26,6 +26,12 @@ android {
         useIR = true
     }
 
+    buildTypes {
+        getByName("debug") { }
+        create("staging") { }
+        getByName("release") { }
+    }
+
 }
 
 dependencies {
