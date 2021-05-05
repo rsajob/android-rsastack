@@ -47,8 +47,8 @@ dependencies {
     implementation("com.google.android.material:material:1.3.0")
 
     // Moxy
-    implementation("com.github.moxy-community:moxy:2.1.1")
-    kapt("com.github.moxy-community:moxy-compiler:2.1.1")
+    implementation("com.github.moxy-community:moxy:2.2.1")
+    kapt("com.github.moxy-community:moxy-compiler:2.2.1")
 
     // Toothpick
     implementation("com.github.stephanenicolas.toothpick:toothpick-runtime:3.1.0")

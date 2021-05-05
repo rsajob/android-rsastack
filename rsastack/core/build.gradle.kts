@@ -51,10 +51,6 @@ dependencies {
     implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
     implementation("io.reactivex.rxjava2:rxjava:2.2.21")
 
-    // Moxy
-    implementation("com.github.moxy-community:moxy:2.1.1")
-    kapt("com.github.moxy-community:moxy-compiler:2.1.1")
-
     // Cicerone (Navigation pattern)
     implementation("com.github.terrakok:cicerone:7.0")
 

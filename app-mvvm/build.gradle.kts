@@ -35,7 +35,6 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-        useIR = true
     }
 
     buildFeatures {
@@ -117,7 +116,7 @@ dependencies {
     implementation("com.google.android.material:material:1.3.0")
 
     // For simplify View Binding
-    implementation("com.github.kirich1409:viewbindingpropertydelegate:1.4.4")
+    implementation("com.github.kirich1409:viewbindingpropertydelegate:1.4.6")
 
     // RxJava
     implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
@@ -126,8 +125,12 @@ dependencies {
 //    implementation 'com.jakewharton.rxbinding2:rxbinding:2.2.0'
 
     // Moxy
-    implementation("com.github.moxy-community:moxy:2.1.1")
-    kapt("com.github.moxy-community:moxy-compiler:2.1.1")
+    implementation("com.github.moxy-community:moxy:2.2.1")
+    kapt("com.github.moxy-community:moxy-compiler:2.2.1")
+
+    // Moxy
+    implementation("com.github.moxy-community:moxy:2.2.1")
+    kapt("com.github.moxy-community:moxy-compiler:2.2.1")
 
     // Cicerone (Navigation pattern)
     implementation("com.github.terrakok:cicerone:7.0")
