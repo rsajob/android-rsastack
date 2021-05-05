@@ -2,6 +2,8 @@ package com.rsastack.system.ui.validation
 
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.ContentView
+import androidx.annotation.LayoutRes
 import com.rsastack.system.mvp.MvpFragment
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.OneExecutionStateStrategy
@@ -23,7 +25,12 @@ interface ValidationPresenter {
     fun onEndOfChanging(id:String)
 }
 
-abstract class MvpValidationFragment : MvpFragment(), ValidationView {
+abstract class MvpValidationFragment : MvpFragment, ValidationView {
+
+    constructor() : super()
+
+    @ContentView
+    constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
 
     protected lateinit var validationViewController : ValidationViewController
     abstract fun getValidationErrorString(fieldId: String, validationState: ValidationState): String
