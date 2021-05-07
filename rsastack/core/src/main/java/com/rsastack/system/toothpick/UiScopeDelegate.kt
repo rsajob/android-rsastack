@@ -68,8 +68,12 @@ class UiScopeDelegate<F: Fragment>(
         var scopeName = fragment.arguments?.getString(ARG_SCOPE_NAME)
         if (scopeName == null) {
             scopeName = initScopeName
+
             // Save scope name to fragment arguments
-            fragment.arguments = (fragment.arguments ?: Bundle()).apply { putString(ARG_SCOPE_NAME, scopeName) }
+            if (fragment.arguments == null)
+                fragment.arguments = Bundle().apply { putString(ARG_SCOPE_NAME, scopeName) }
+            else
+                fragment.arguments?.putString(ARG_SCOPE_NAME, scopeName)
         }
 
         if (!Toothpick.isScopeOpen(scopeName)) {
