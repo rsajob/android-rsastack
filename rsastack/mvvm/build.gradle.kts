@@ -40,7 +40,7 @@ dependencies {
     // AndroidX
     implementation("androidx.core:core-ktx:1.5.0-rc01")
     implementation("androidx.appcompat:appcompat:1.3.0-rc01")
-    implementation("androidx.activity:activity-ktx:1.2.2")
+    implementation("androidx.activity:activity-ktx:1.2.3")
 
     implementation("androidx.recyclerview:recyclerview:1.2.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta01")

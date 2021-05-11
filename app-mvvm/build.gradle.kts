@@ -125,12 +125,8 @@ dependencies {
 //    implementation 'com.jakewharton.rxbinding2:rxbinding:2.2.0'
 
     // Moxy
-    implementation("com.github.moxy-community:moxy:2.2.1")
-    kapt("com.github.moxy-community:moxy-compiler:2.2.1")
-
-    // Moxy
-    implementation("com.github.moxy-community:moxy:2.2.1")
-    kapt("com.github.moxy-community:moxy-compiler:2.2.1")
+    implementation("com.github.moxy-community:moxy:2.2.2")
+    kapt("com.github.moxy-community:moxy-compiler:2.2.2")
 
     // Cicerone (Navigation pattern)
     implementation("com.github.terrakok:cicerone:7.0")
@@ -150,9 +146,6 @@ dependencies {
     // OkHttp
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
-
-    // ToggleButtonLayout for stuff screen
-    implementation("com.github.savvyapps:ToggleButtonLayout:1.2.0")
 
     // adapterdelegates4
     implementation("com.hannesdorfmann:adapterdelegates4:4.3.0") { isTransitive = false }

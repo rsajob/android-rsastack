@@ -41,14 +41,14 @@ dependencies {
     // AndroidX
     implementation("androidx.core:core-ktx:1.5.0-rc01")
     implementation("androidx.appcompat:appcompat:1.3.0-rc01")
-    implementation("androidx.activity:activity-ktx:1.2.2")
+    implementation("androidx.activity:activity-ktx:1.2.3")
 
     // Material components
     implementation("com.google.android.material:material:1.3.0")
 
     // Moxy
-    implementation("com.github.moxy-community:moxy:2.2.1")
-    kapt("com.github.moxy-community:moxy-compiler:2.2.1")
+    implementation("com.github.moxy-community:moxy:2.2.2")
+    kapt("com.github.moxy-community:moxy-compiler:2.2.2")
 
     // Toothpick
     implementation("com.github.stephanenicolas.toothpick:toothpick-runtime:3.1.0")

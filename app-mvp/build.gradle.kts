@@ -98,7 +98,7 @@ dependencies {
     // AndroidX
     implementation("androidx.core:core-ktx:1.5.0-rc01")
     implementation("androidx.appcompat:appcompat:1.3.0-rc01")
-    implementation("androidx.activity:activity-ktx:1.2.2")
+    implementation("androidx.activity:activity-ktx:1.2.3")
 
     implementation("androidx.recyclerview:recyclerview:1.2.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta01")
@@ -123,8 +123,8 @@ dependencies {
 //    implementation 'com.jakewharton.rxbinding2:rxbinding:2.2.0'
 
     // Moxy
-    implementation("com.github.moxy-community:moxy:2.2.1")
-    kapt("com.github.moxy-community:moxy-compiler:2.2.1")
+    implementation("com.github.moxy-community:moxy:2.2.2")
+    kapt("com.github.moxy-community:moxy-compiler:2.2.2")
 
     // Cicerone (Navigation pattern)
     implementation("com.github.terrakok:cicerone:7.0")
@@ -144,9 +144,6 @@ dependencies {
     // OkHttp
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
-
-    // ToggleButtonLayout for stuff screen
-    implementation("com.github.savvyapps:ToggleButtonLayout:1.2.0")
 
     // adapterdelegates4
     implementation("com.hannesdorfmann:adapterdelegates4:4.3.0") { isTransitive = false }
