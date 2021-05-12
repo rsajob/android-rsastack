@@ -47,10 +47,6 @@ dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
     implementation("androidx.preference:preference-ktx:1.1.1")
 
-    // RxJava
-    implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
-    implementation("io.reactivex.rxjava2:rxjava:2.2.21")
-
     // Cicerone (Navigation pattern)
     implementation("com.github.terrakok:cicerone:7.0")
 

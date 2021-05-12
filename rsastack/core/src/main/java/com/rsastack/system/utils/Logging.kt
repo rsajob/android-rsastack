@@ -2,7 +2,7 @@ package com.rsastack.system.utils
 
 import android.annotation.SuppressLint
 import android.util.Log
-import com.rsastack.BuildConfig
+import com.rsastack.core.BuildConfig
 import com.rsastack.system.utils.LoggerSettings.isLogEnabled
 import com.rsastack.system.utils.LoggerSettings.logPrefix
 

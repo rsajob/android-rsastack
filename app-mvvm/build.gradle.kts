@@ -89,6 +89,7 @@ dependencies {
     implementation(project(":rsastack:core"))
     implementation(project(":rsastack:mvp"))
     implementation(project(":rsastack:mvvm"))
+    implementation(project(":rsastack:rx"))
     implementation(project(":uicore"))
 
     // Kotlin coroutines

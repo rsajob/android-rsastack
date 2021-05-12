@@ -88,6 +88,7 @@ dependencies {
 
     implementation(project(":rsastack:core"))
     implementation(project(":rsastack:mvp"))
+    implementation(project(":rsastack:rx"))
     implementation(project(":uicore"))
 
     // Kotlin coroutines
@@ -101,7 +102,7 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.2.3")
 
     implementation("androidx.recyclerview:recyclerview:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta01")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta02")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
     implementation("androidx.preference:preference-ktx:1.1.1")
 
