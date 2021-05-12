@@ -23,7 +23,6 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-        useIR = true
     }
 
     buildTypes {
@@ -42,9 +41,6 @@ dependencies {
     implementation("androidx.core:core-ktx:1.5.0-rc01")
     implementation("androidx.appcompat:appcompat:1.3.0-rc01")
     implementation("androidx.activity:activity-ktx:1.2.3")
-
-    // Material components
-    implementation("com.google.android.material:material:1.3.0")
 
     // Moxy
     implementation("com.github.moxy-community:moxy:2.2.2")

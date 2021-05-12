@@ -42,12 +42,6 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.3.0-rc01")
     implementation("androidx.activity:activity-ktx:1.2.3")
 
-    implementation("androidx.recyclerview:recyclerview:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta01")
-    implementation("com.google.android.material:material:1.3.0")
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
-    implementation("androidx.preference:preference-ktx:1.1.1")
-
     implementation("androidx.lifecycle:lifecycle-common-java8:2.3.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
