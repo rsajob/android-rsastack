@@ -22,10 +22,7 @@ fun Fragment.hideKeyboard(v: View? = null) {
 
 @Suppress("DEPRECATION")
 fun Fragment.setupKeyboardModeResize() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-        activity?.window?.setDecorFitsSystemWindows(false)
-    }else
-        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+    activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 }
 
 fun Fragment.setupKeyboardModePan() {
