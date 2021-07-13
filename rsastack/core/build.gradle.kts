@@ -27,12 +27,12 @@ android {
 dependencies {
 
     // AndroidX
-    implementation("androidx.core:core-ktx:1.5.0-rc01")
-    implementation("androidx.appcompat:appcompat:1.3.0-rc01")
+    implementation("androidx.core:core-ktx:1.6.0")
+    implementation("androidx.appcompat:appcompat:1.3.0")
     implementation("androidx.activity:activity-ktx:1.2.3")
 
-    implementation("androidx.recyclerview:recyclerview:1.2.0")
-    implementation("com.google.android.material:material:1.3.0")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
     implementation("androidx.preference:preference-ktx:1.1.1")
 
