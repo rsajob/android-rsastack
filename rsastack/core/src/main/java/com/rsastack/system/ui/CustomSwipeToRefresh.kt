@@ -1,10 +1,10 @@
 package com.rsastack.system.ui
 
 import android.content.Context
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.ViewConfiguration
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 /**
  * Created by Roman Savelev (aka @rsa) on 11/18/18.

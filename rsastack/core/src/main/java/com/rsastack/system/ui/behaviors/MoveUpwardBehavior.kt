@@ -1,14 +1,10 @@
 package com.rsastack.system.ui.behaviors
 
 import android.content.Context
-import androidx.coordinatorlayout.widget.CoordinatorLayout
-import com.google.android.material.snackbar.Snackbar
 import android.util.AttributeSet
 import android.view.View
-import androidx.core.view.ViewCompat.setTranslationY
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-
-
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import com.google.android.material.snackbar.Snackbar
 
 
 class MoveUpwardBehavior @JvmOverloads constructor(

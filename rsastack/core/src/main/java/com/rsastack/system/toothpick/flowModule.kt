@@ -1,9 +1,9 @@
 package com.rsastack.system.toothpick
 
-import com.rsastack.system.navigation.FlowRouter
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
+import com.rsastack.system.navigation.FlowRouter
 import toothpick.ktp.binding.module
 
 

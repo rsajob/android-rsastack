@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.rsastack.system.navigation.BackButtonListener
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.rsastack.mvp.R
+import com.rsastack.system.navigation.BackButtonListener
 import javax.inject.Inject
 
 abstract class MvpFlowFragment : MvpFragment(),

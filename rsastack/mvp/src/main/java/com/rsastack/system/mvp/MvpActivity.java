@@ -1,15 +1,12 @@
 package com.rsastack.system.mvp;
 
 import android.os.Bundle;
-
 import androidx.annotation.ContentView;
 import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.AppCompatActivity;
-
-import org.jetbrains.annotations.NotNull;
-
 import moxy.MvpDelegate;
 import moxy.MvpDelegateHolder;
+import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("unused")
 public class MvpActivity extends AppCompatActivity implements MvpDelegateHolder {

@@ -1,9 +1,9 @@
 package com.rsastack.system.navigation
 
-import com.github.terrakok.cicerone.Router
-import com.github.terrakok.cicerone.Screen
 import com.github.terrakok.cicerone.BackTo
 import com.github.terrakok.cicerone.Forward
+import com.github.terrakok.cicerone.Router
+import com.github.terrakok.cicerone.Screen
 
 class FlowRouter(val appRouter: Router) : Router() {
 

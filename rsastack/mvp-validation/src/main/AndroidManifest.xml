@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.rsastack.ui.validation"/>
+<manifest package="com.rsastack.ui.validation" />
