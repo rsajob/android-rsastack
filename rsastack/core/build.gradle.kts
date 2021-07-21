@@ -37,7 +37,7 @@ dependencies {
     implementation("androidx.preference:preference-ktx:1.1.1")
 
     // Cicerone (Navigation pattern)
-    implementation("com.github.terrakok:cicerone:7.0")
+    implementation("com.github.terrakok:cicerone:7.1")
 
     // Toothpick
     implementation("com.github.stephanenicolas.toothpick:toothpick-runtime:3.1.0")
