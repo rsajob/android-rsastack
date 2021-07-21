@@ -43,6 +43,6 @@ dependencies {
     kapt("com.github.stephanenicolas.toothpick:toothpick-compiler:3.1.0")
 
     // Cicerone (Navigation pattern)
-    implementation("com.github.terrakok:cicerone:7.0")
+    implementation("com.github.terrakok:cicerone:7.1")
 
 }
