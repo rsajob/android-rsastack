@@ -10,13 +10,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(30)
-    defaultConfig {
+    compileSdk = 30
 
+    defaultConfig {
         applicationId = "com.rsastack.mvvm"
 
-        minSdkVersion(21)
-        targetSdkVersion(30)
+        minSdk = 21
+        targetSdk = 30
 
         val verName = "1.0.0-SNAPSHOT"
         val verCode = buildVersionCode(verName)
@@ -44,7 +44,7 @@ android {
 
     }
 
-    flavorDimensions("default")
+    flavorDimensions += "default"
 
     buildTypes {
 
@@ -90,12 +90,12 @@ dependencies {
 
     // AndroidX
     implementation("androidx.core:core-ktx:1.6.0")
-    implementation("androidx.appcompat:appcompat:1.3.0")
-    implementation("androidx.activity:activity-ktx:1.2.3")
+    implementation("androidx.appcompat:appcompat:1.3.1")
+    implementation("androidx.activity:activity-ktx:1.3.0")
 
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.recyclerview:recyclerview:1.2.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta02")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
     implementation("androidx.preference:preference-ktx:1.1.1")
 
@@ -121,7 +121,7 @@ dependencies {
     kapt("com.github.moxy-community:moxy-compiler:2.2.2")
 
     // Cicerone (Navigation pattern)
-    implementation("com.github.terrakok:cicerone:7.0")
+    implementation("com.github.terrakok:cicerone:7.1")
 
     // Toothpick
     implementation("com.github.stephanenicolas.toothpick:toothpick-runtime:3.1.0")
