@@ -29,7 +29,7 @@ dependencies {
     // AndroidX
     implementation("androidx.core:core-ktx:1.6.0")
     implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.activity:activity-ktx:1.3.0")
+    implementation("androidx.activity:activity-ktx:1.3.1")
 
     implementation("androidx.lifecycle:lifecycle-common-java8:2.3.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
