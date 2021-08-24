@@ -108,7 +108,7 @@ dependencies {
     implementation("com.google.android.material:material:1.4.0")
 
     // For simplify View Binding
-    implementation("com.github.kirich1409:viewbindingpropertydelegate:1.4.6")
+    implementation("com.github.kirich1409:viewbindingpropertydelegate:1.4.7")
 
     // RxJava
     implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
