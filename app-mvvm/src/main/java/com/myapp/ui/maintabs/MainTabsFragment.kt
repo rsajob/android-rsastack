@@ -1,36 +1,43 @@
 package com.myapp.ui.maintabs
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.myapp.R
 import com.myapp.databinding.FragmentMainBinding
 import com.myapp.toothpick.DI
-import com.rsastack.system.mvp.MvpFragment
+import com.rsastack.system.mvvm.provideViewModel
 import com.rsastack.system.navigation.BackButtonListener
 import com.rsastack.system.utils.redispatchWindowInsetsToAllChildren
-import moxy.presenter.InjectPresenter
-import moxy.presenter.ProvidePresenter
-import toothpick.Toothpick
 
 private const val CURRENT_TAB = "current_tab"
 
-class MainTabsFragment : MvpFragment(R.layout.fragment_main), MainTabsView, BackButtonListener {
+class MainTabsFragment : Fragment(R.layout.fragment_main), BackButtonListener {
 
-    private val tabs = listOf(Tabs.Home(), Tabs.Cards())
+    private val tabs = listOf(
+        Tabs.Home(),
+        Tabs.Cards()
+    )
 
     private val binding by viewBinding(FragmentMainBinding::bind)
 
     private val currentTabFragment: Fragment?
         get() = childFragmentManager.fragments.firstOrNull { !it.isHidden } // Обязательно именно так!!! а не findFragmentById(R.id.tab_container)
 
-    @InjectPresenter
-    lateinit var presenter: MainTabsPresenter
+    private lateinit var viewModel: MainTabsViewModel
 
-    @ProvidePresenter
-    fun providePresenter(): MainTabsPresenter = Toothpick.openScope(DI.TOP_FLOW_SCOPE).getInstance(MainTabsPresenter::class.java)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        viewModel = provideViewModel(DI.TOP_FLOW_SCOPE, MainTabsViewModel::class.java)
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
 
     private var currentTab: String? = null
 
