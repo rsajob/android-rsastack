@@ -10,7 +10,7 @@ import toothpick.config.Module
 
 @Suppress("UNCHECKED_CAST")
 fun provideFactory(scopeName:String, cls:Class<*>):ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(cls))
             return Toothpick.openScope(scopeName).getInstance(cls) as T
 
@@ -20,7 +20,7 @@ fun provideFactory(scopeName:String, cls:Class<*>):ViewModelProvider.Factory = o
 
 @Suppress("UNCHECKED_CAST")
 fun provideFactory(scopeName:String, cls:Class<*>, bindings: Module.() -> Unit = {}):ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(cls))
             return toothpickCreateInstance(scopeName, cls, bindings) as T
 

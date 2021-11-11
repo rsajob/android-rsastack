@@ -27,9 +27,9 @@ dependencies {
     implementation(project(":rsastack:core"))
 
     // AndroidX
-    implementation("androidx.core:core-ktx:1.6.0")
+    implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.activity:activity-ktx:1.3.1")
+    implementation("androidx.activity:activity-ktx:1.4.0")
 
     // Moxy
     implementation("com.github.moxy-community:moxy:2.2.2")
