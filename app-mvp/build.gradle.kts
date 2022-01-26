@@ -89,13 +89,13 @@ dependencies {
 
     // AndroidX
     implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
+    implementation("androidx.appcompat:appcompat:1.4.1")
     implementation("androidx.activity:activity-ktx:1.4.0")
 
     implementation("androidx.recyclerview:recyclerview:1.2.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
-    implementation("androidx.preference:preference-ktx:1.1.1")
+    implementation("androidx.preference:preference-ktx:1.2.0")
 
     // Android Arch
     implementation("androidx.lifecycle:lifecycle-common-java8:2.4.0")
@@ -103,7 +103,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
 
     // Material componemts
-    implementation("com.google.android.material:material:1.4.0")
+    implementation("com.google.android.material:material:1.5.0")
 
     // For simplify View Binding
     implementation("com.github.kirich1409:viewbindingpropertydelegate:1.4.7")

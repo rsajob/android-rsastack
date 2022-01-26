@@ -22,8 +22,8 @@ dependencies {
     compileOnly(gradleApi())
     compileOnly(localGroovy())
 
-    compileOnly("com.android.tools.build:gradle:7.0.0")
-    compileOnly("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21")
+    compileOnly("com.android.tools.build:gradle:7.1.0")
+    compileOnly("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
 
     // Use the Kotlin test library.
     testImplementation("org.jetbrains.kotlin:kotlin-test")
