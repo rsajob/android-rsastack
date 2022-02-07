@@ -11,6 +11,7 @@ includeBuild("gradle-plugins/rsastack-version")
 
 include(":app-mvp")
 include(":app-mvvm")
+include(":app-embedded")
 include(":rsastack:core")
 include(":rsastack:mvp")
 include(":rsastack:mvvm")

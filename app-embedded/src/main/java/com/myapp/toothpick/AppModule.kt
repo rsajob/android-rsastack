@@ -9,8 +9,13 @@ import com.github.terrakok.cicerone.Router
 import toothpick.ktp.binding.module
 
 fun appModule(context: Context) = module {
-    //Global
     bind(Context::class.java).toInstance(context)
     bind(SchedulersProvider::class.java).toInstance(RxSchedulers())
+
+    // Navigation
+    val cicerone = Cicerone.create()
+    bind(Router::class.java).toInstance(cicerone.router)
+    bind(NavigatorHolder::class.java).toInstance(cicerone.getNavigatorHolder())
+
 }
 

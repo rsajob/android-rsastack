@@ -12,8 +12,8 @@ import com.rsastack.mvvm.R
 import com.rsastack.system.base.RealDestroyFragment
 import javax.inject.Inject
 
-abstract class MvvmFlowFragment : RealDestroyFragment(),
-    BackButtonListener {
+abstract class MvvmFlowFragment : RealDestroyFragment(), BackButtonListener
+{
     open val layoutRes: Int = R.layout.layout_flow_container
     open val containerId: Int = R.id.flow_container
 

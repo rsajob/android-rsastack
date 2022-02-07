@@ -5,7 +5,6 @@ object DI {
     const val SERVER_SCOPE = "SERVER_SCOPE"
 
     // Dinamic scope names, thay are changing in initUiScope()
-    var APP_ACTIVITY_SCOPE = "APP_ACTIVITY_SCOPE"
     var TOP_FLOW_SCOPE = "TOP_FLOW_SCOPE"
     var AUTH_FLOW_SCOPE = "AUTH_FLOW_SCOPE"
 }
